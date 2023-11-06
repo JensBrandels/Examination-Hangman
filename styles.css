@@ -1,6 +1,8 @@
 /* GENERAL SETTINGS */
 
 :root {
+
+    /* Colors */
     --dusk-1: hsl(0, 0%, 90%); /* Dusk 1 - Very light gray */
     --dusk-2: hsl(0, 0%, 80%); /* Dusk 2 - Light gray */
     --dusk-3: hsl(0, 0%, 70%); /* Dusk 3 - Medium-light gray */
@@ -15,12 +17,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: var(--dusk-8, hsl(0, 0%, 20%));
 }
 
 body {
     font-family: sans-serif;
     background-color: var(--dusk-1);
     color-scheme: light dark;
+<<<<<<< HEAD
     width: 100vw;
 }
 
@@ -136,3 +140,45 @@ main {
 .main__countdown--circle {
     font-size: 1.5rem;
 }
+=======
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 21.33px;
+}
+
+h3 {
+    font-size: 32px;
+}
+
+h4 {
+    font-size: 21.33px;
+}
+
+h5 {
+    font-size: 32px;
+}
+
+h6 {
+    font-size: 21.33px;
+}
+
+p {
+    font-size: 16px;
+}
+
+.image {
+    width: 38.375rem;
+    height: 34.25rem;
+    flex-shrink: 0;
+    border-radius: 1rem;
+    border: 1px solid #333;
+    background: url('<path-to-image>') lightgray 50% / cover no-repeat;
+}
+
+/* MAIN CODE STARTS HERE */
+>>>>>>> f4d0a17ecf9475c56fada00109046eab85e77997
