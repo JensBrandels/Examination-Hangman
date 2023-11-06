@@ -8,24 +8,31 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="header__youWin"></div>
-        <div class="header__youLoose"></div>
-        <button id="header__button">Start game</button>
-    </header>
+    <div class="body__container">
+        <header>
+            <div class="header__youWin"></div>
+            <div class="header__youLoose"></div>
+            <button id="header__button">Start game</button>
+        </header>
 
-    <main>
-        <div class="main__hangMan"></div>
-        <div class="main--container">
-            <p class="main__randomWord">HAPPY</p>
-            <form class="main__inputs">
-                <input type="text" name="inputCharacter" id="inputText" placeholder="Pick a character">
-                <input type="submit" value="Submit" id="submitButton">
-            </form>
-            <div class="main__wrongCharacters"></div>
-            <div class="main__countdown">6</div>
-        </div>
-    </main>
+        <main>
+            <div class="main__hangMan"></div>
+            <div class="main--container">
+                <p class="main__randomWord">HAPPY</p>
+                <form class="main__inputs">
+                    <input type="text" name="inputCharacter" id="inputText" placeholder="Pick a character">
+                    <input type="submit" value="Submit" id="submitButton">
+                </form>
+                <div class="main__wrongContainer">
+                    <p class="main__wrongUsedWords">A B C A B C </p>
+                </div>
+                <div class="main__countdown">
+                    <p class="main__countdown--text">Tries left:</p>
+                    <p class="main__countdown--circle">6</p>
+                </div>
+            </div>
+        </main>
+    </div>  
     <script src="script.js"></script>
 </body>
 </html>

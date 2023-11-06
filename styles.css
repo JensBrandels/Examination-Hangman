@@ -26,7 +26,6 @@ body {
     color-scheme: light dark;
 }
 
-/* Update font sizes to use a major third scale */
 h1 {
     font-size: 2rem;
 }
@@ -65,10 +64,15 @@ p {
     border: 1px solid var(--dusk-6);
     border-radius: 5px; 
     font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s; 
 }
 
-#header__button:hover {
-    background-color: var(--dusk-7); 
+.image {
+    width: 38.375rem;
+    height: 34.25rem;
+    flex-shrink: 0;
+    border-radius: 1rem;
+    border: 1px solid #333;
+    background: url('<path-to-image>') lightgray 50% / cover no-repeat;
 }
+
+/* MAIN CODE STARTS HERE */
