@@ -76,7 +76,7 @@ p {
     height: 34.25rem;
     flex-shrink: 0;
     border-radius: 1rem;
-    border: 1px solid #333;
+    border: 1px solid var(--dusk-8);
     background: url('<path-to-image>') lightgray 50% / cover no-repeat;
 }
 
@@ -158,13 +158,13 @@ main {
     width: 15rem;
     padding: 0.5rem 1.5rem;
     border-radius: 0.5rem;
-    border: none;
+    border: 1px solid var(--dusk-8);
 }
 
 #submitButton {
     padding: 0.5rem 1.5rem;
     border-radius: 0.5rem;
-    border: none;
+    border: 1px solid var(--dusk-8);
 }
 
 .main__wrongContainer {
