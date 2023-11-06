@@ -67,7 +67,6 @@ body {
     font-family: sans-serif;
     background-color: var(--dusk-1);
     color-scheme: light dark;
-<<<<<<< HEAD
 }
 
 h1 {
@@ -120,10 +119,6 @@ p {
 }
 
 /* MAIN CODE STARTS HERE */
-=======
-    width: 100vw;
-}
-
 .body__container {
     border: solid 1px black;
     margin: 3rem;
@@ -232,4 +227,3 @@ main {
     font-size: 1.2rem;
     margin-right: 0.5rem;
 }
->>>>>>> 9169a75b74769db00b0502d159d3e9ccc5217d3d
