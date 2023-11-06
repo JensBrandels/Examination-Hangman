@@ -97,7 +97,7 @@ header {
     background-color: var(--dusk-1);
     border: solid 1px var(--dusk-8);
     border-radius: 1rem;
-    margin: 3rem auto;
+
     padding: 2rem;
     max-width: auto;
 }
@@ -151,7 +151,7 @@ header {
     font-weight: 600;
     letter-spacing: 1rem;
     text-align: center;
-    width: 20rem;
+    width: 100%;
 }
 
 /* INPUT FIELDS */
@@ -185,7 +185,7 @@ header {
     border-radius: 0.5rem;
     display: flex;
     height: 5rem;
-    width: 20rem;
+    width: 100%;
 }
 
 .main__wrongUsedWords {
@@ -201,7 +201,6 @@ header {
 .main__countdown {
     align-self: flex-end;
     display: flex;
-    margin-right: 2rem;
 }
 
 .main__countdown--circle {
