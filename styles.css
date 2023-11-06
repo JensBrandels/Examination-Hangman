@@ -1,0 +1,24 @@
+/* GENERAL SETTINGS */
+
+:root {
+    --dusk-1: hsl(0, 0%, 90%); /* Dusk 1 - Very light gray */
+    --dusk-2: hsl(0, 0%, 80%); /* Dusk 2 - Light gray */
+    --dusk-3: hsl(0, 0%, 70%); /* Dusk 3 - Medium-light gray */
+    --dusk-4: hsl(0, 0%, 60%); /* Dusk 4 - Medium gray */
+    --dusk-5: hsl(0, 0%, 50%); /* Dusk 5 - Medium-dark gray */
+    --dusk-6: hsl(0, 0%, 40%); /* Dusk 6 - Dark gray */
+    --dusk-7: hsl(0, 0%, 30%); /* Dusk 7 - Very dark gray */
+    --dusk-8: hsl(0, 0%, 20%); /* Dusk 8 - Nearly black gray */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: var(--dusk-1);
+    color-scheme: light dark;
+}
