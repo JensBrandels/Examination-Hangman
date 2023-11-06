@@ -32,6 +32,7 @@ body {
     background-color: #fff;
     color-scheme: light dark;
     font-family: sans-serif;
+    padding: 50px;
 }
 
 h1 {
@@ -91,12 +92,14 @@ header {
 
 /* BODY CONTAINER */
 .body__container {
+    display: flex;
+    flex-direction: column;
     background-color: var(--dusk-1);
     border: solid 1px var(--dusk-8);
     border-radius: 1rem;
     margin: 3rem auto;
     padding: 2rem;
-    width: 60rem;
+    max-width: auto;
 }
 
 /* YOU WIN AND YOU LOSE */
