@@ -26,41 +26,49 @@ body {
     color-scheme: light dark;
 }
 
+/* Update font sizes to use a major third scale */
 h1 {
-    font-size: 32px;
+    font-size: 2rem;
 }
 
 h2 {
-    font-size: 21.33px;
+    font-size: 1.5rem; 
 }
 
 h3 {
-    font-size: 32px;
+    font-size: 1.125rem; 
 }
 
 h4 {
-    font-size: 21.33px;
+    font-size: 0.75rem; 
 }
 
 h5 {
-    font-size: 32px;
+    font-size: 0.5rem; 
 }
 
 h6 {
-    font-size: 21.33px;
+    font-size: 0.333rem; 
 }
 
 p {
-    font-size: 16px;
+    font-size: 1rem;
 }
 
-.image {
-    width: 38.375rem;
-    height: 34.25rem;
-    flex-shrink: 0;
-    border-radius: 1rem;
-    border: 1px solid #333;
-    background: url('<path-to-image>') lightgray 50% / cover no-repeat;
-}
 
 /* MAIN CODE STARTS HERE */
+
+#header__button {
+    background-color: var(--dusk-5);
+    color: var(--dusk-1); 
+    padding: 10px 20px;
+    border: 1px solid var(--dusk-6);
+    border-radius: 5px; 
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; 
+}
+
+#header__button:hover {
+    background-color: var(--dusk-7); 
+}
