@@ -68,7 +68,7 @@ p {
     padding: 10px 20px;
     border: 1px solid var(--dusk-6);
     border-radius: 5px; 
-    font-size: 16px;
+    font-size: var(--font-size-p);
 }
 
 .image {
@@ -81,7 +81,7 @@ p {
 }
 
 .main__countdown--circle {
-    font-size: 1.5rem;
+    font-size: var(--font-size-p);
 }
 
 .body__container {
@@ -156,11 +156,15 @@ main {
     padding: 0.5rem;
     margin-right: 0.5rem;
     width: 15rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
 }
 
 #submitButton {
-    padding: 0.5rem;
-    margin-left: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
 }
 
 .main__wrongContainer {
