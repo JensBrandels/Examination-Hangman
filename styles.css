@@ -9,6 +9,7 @@
     --dusk-6: hsl(0, 0%, 40%);
     --dusk-7: hsl(0, 0%, 30%);
     --dusk-8: hsl(0, 0%, 20%);
+    --enviro: hsl(120, 100%, 20%);
 
     --font-size-h1: 2rem;
     --font-size-h2: 1.5rem;
@@ -62,12 +63,18 @@ p {
 
 /* MAIN CODE STARTS HERE */
 
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #header__button {
     background-color: var(--dusk-5);
-    color: var(--dusk-1); 
+    color: var(--dusk-1);
     padding: 10px 20px;
     border: 1px solid var(--dusk-6);
-    border-radius: 5px; 
+    border-radius: 0.5rem;
     font-size: var(--font-size-p);
 }
 
@@ -153,19 +160,28 @@ main {
 }
 
 #inputText {
-    padding: 0.5rem;
-    margin-right: 0.5rem;
     width: 15rem;
     padding: 0.5rem 1.5rem;
     border-radius: 0.5rem;
     border: 1px solid var(--dusk-8);
+    font-size: var(--font-size-p);
 }
 
 #submitButton {
     padding: 0.5rem 1.5rem;
     border-radius: 0.5rem;
     border: 1px solid var(--dusk-8);
+    font-size: var(--font-size-p);
+    background-color: var(--enviro);
+    color: var(--dusk-1);
+    transition: background-color 0.3s, color 0.3s; 
 }
+
+#submitButton:hover {
+    background-color: var(--dusk-8); /* Change the background color on hover */
+    color: var(--enviro); /* Change the text color on hover */
+}
+
 
 .main__wrongContainer {
     width: 20rem;
