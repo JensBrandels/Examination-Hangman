@@ -23,3 +23,12 @@ body {
     background-color: var(--dusk-1);
     color-scheme: light dark;
 }
+
+.image {
+    width: 38.375rem;
+    height: 34.25rem;
+    flex-shrink: 0;
+    border-radius: 1rem;
+    border: 1px solid #333;
+    background: url('<path-to-image>') lightgray 50% / cover no-repeat;
+}
