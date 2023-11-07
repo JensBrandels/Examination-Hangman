@@ -13,44 +13,35 @@ gameStart.addEventListener('click', ()=>{
 
     displaySplitWord.innerHTML = '';
 
-    randomIndex = getRandomWord(words)
-    splitWord = wordSplitter(randomIndex)
+    let pickedWord = getRandomWord()
+    let underlines = pickedWord.split('').fill('_',0).join('')
+    displaySplitWord.innerHTML = underlines
 
-    console.log(randomIndex);
+    console.log(pickedWord);
     //console.log(splitWord);
 
 });
 
 //3. slumpa ut random ord med math.random och lägg i en tom array
-function getRandomWord(randomWord){
-    const randomIndex = randomWord[Math.floor(Math.random() * randomWord.length)]; 
-    //skriv ut det nya ordet på hemsidan
-    return randomIndex
+function getRandomWord(){
+    return words[Math.floor(Math.random() * words.length)]; 
 }
 
-//lägger ordet i array splittad med 1 bokstav per index
-function wordSplitter(randomWord) {
-    let splitWord = randomWord.split('')
 
-    hideChars(splitWord);
 
-    //return splitWord;
-    console.log(splitWord);
-}
-
-function hideChars(splitWord) {
-    // forEach loop som skapar en span mellan varje index, för att få understäcken
-    splitWord.forEach((item, index) => {
-        const span = document.createElement('span');
-        span.textContent = item;
-        //Göm texten, ej understräcken
-        span.innerText = '_';
-        //span.style.textDecoration = 'underline';
-        span.style.marginRight = '10px';
-        displaySplitWord.appendChild(span);
-        console.log(span);
-});
-}
+// function hideChars(splitWord) {
+//     // forEach loop som skapar en span mellan varje index, för att få understäcken
+//     splitWord.forEach((item, index) => {
+//         const span = document.createElement('span');
+//         span.textContent = item;
+//         //Göm texten, ej understräcken
+//         span.innerText = '_';
+//         //span.style.textDecoration = 'underline';
+//         span.style.marginRight = '10px';
+//         displaySplitWord.appendChild(span);
+//         console.log(span);
+// });
+// }
 
 
 
@@ -91,64 +82,3 @@ submitButton.addEventListener('click', () =>{
 //9. + display image och kör en countdown på de 6 försöken
 //10. ifall countdown hamnar på 0, kalla på diven "Game over" och visa det slumpade ordet. try again knapp
 //11. Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" och skapa en play again knapp
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-const words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'];
-let randomIndex;
-let splitWord;
-let wrongArray = [];
-const displaySplitWord = document.querySelector('.main__randomWord');
-const maxInput = document.getElementById('inputText');
-const wrongChars = document.querySelector('.main__wrongUsedWords');
-const submitButton = document.querySelector('#submitButton');
-
-function getRandomWordFromArray(wordArray) {
-  return wordArray[Math.floor(Math.random() * wordArray.length)];
-}
-
-function splitWordIntoChars(randomWord) {
-  const splitWord = randomWord.split('');
-  hideChars(splitWord);
-  return splitWord;
-}
-
-function hideChars(splitWord) {
-  splitWord.forEach((char) => {
-    const span = document.createElement('span');
-    span.textContent = '_';
-    span.style.marginRight = '10px';
-    displaySplitWord.appendChild(span);
-  });
-}
-
-maxInput.addEventListener('input', function (inputEvent) {
-  const maxChars = 1;
-  if (inputEvent.target.value.length > maxChars) {
-    inputEvent.target.value = inputEvent.target.value.substr(0, maxChars);
-  }
-});
-
-submitButton.addEventListener('click', () => {
-  const guessedLetter = document.getElementById('inputText').value;
-
-  if (splitWord.includes(guessedLetter)) {
-    console.log('Letter is in the word');
-  } else {
-    wrongArray.push(guessedLetter);
-    console.log('Letter is NOT in the word');
-    wrongChars.innerText = wrongArray.join(', '); // Display wrong letters
-  }
-});
-
-*/ 
