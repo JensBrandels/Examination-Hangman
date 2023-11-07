@@ -1,35 +1,40 @@
 
 //1. Skapa array med ord
-
 let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond']
-//2. Skapa initiate game knapp
 
+//Skapa för att kunna nå randomIndex utanför alla funktioner
+let randomIndex; 
+let splitWord;
+
+//2. Skapa initiate game knapp
 let gameStart = document.querySelector('#header__button')
 gameStart.addEventListener('click', ()=>{
 
-    getRandomWord(words)
+    randomIndex = getRandomWord(words)
+    splitWord = wordSplitter(randomIndex)
+
+    console.log(randomIndex);
+    console.log(splitWord);
 
 });
 
 //3. slumpa ut random ord med math.random och lägg i en tom array
 function getRandomWord(randomWord){
-
     const randomIndex = randomWord[Math.floor(Math.random() * randomWord.length)]; 
-    
     //skriv ut det nya ordet på hemsidan
-    let displayWord = document.querySelector('.main__randomWord')
-    displayWord.innerHTML = randomIndex;
+    return randomIndex
+}
 
-    
-    //lägger ordet i array splittad med 1 bokstav per index
-    let splitWord = randomIndex.split('')
-
+//lägger ordet i array splittad med 1 bokstav per index
+function wordSplitter(randomWord) {
+    let splitWord = randomWord.split('')
+    let displaySplitWord = document.querySelector('.main__randomWord')
+    displaySplitWord.innerHTML = splitWord.join('');
     return splitWord;
-
     // console.log(splitWord);
 }
-//5. input fält som bara kan ha en bokstav som alternativ
 
+//5. input fält som bara kan ha en bokstav som alternativ
 let maxInput = document.getElementById('inputText').addEventListener('input', function(inputMax){
     let maxChars = 1;
 
@@ -38,19 +43,27 @@ let maxInput = document.getElementById('inputText').addEventListener('input', fu
     }
 })
 
+let wrongArray = []
+let wrongChars = document.querySelector('.main__wrongUsedWords')
+wrongChars.innerText = wrongArray
 
+//7. If else sats inkluderar bokstaven gör en funktion som skriver ut den på submitknappen
+let submitButton = document.querySelector('#submitButton')
+submitButton.addEventListener('click', () =>{
 
-//6. Jämför den mot den splittade stringen på submit knappen (enter)
-function compareCharacters(split, input) {
-    let inputValue = input.document.getElementById('inputText').value
-    split = getRandomWord(words)
+    let inputValue = document.getElementById('inputText').value;
+    
+    if (splitWord.includes(inputValue)) {
+        console.log('Letter is in the word');
 
-    if(inputValue === )
-}
+    } else{
+        //8. annars kasta in bostaven i en ny tom array och gör det synligt på hemsidan
+        wrongArray.push(inputValue)
+        console.log('Letter is NOT in the word');
+    }
 
+})
 
-//7. If else sats inkluderar bokstaven gör en funktion som skriver ut den
-//8. annars kasta in bostaven i en ny tom array och gör det synligt på hemsidan
 //9. + display image och kör en countdown på de 6 försöken
 //10. ifall countdown hamnar på 0, kalla på diven "Game over" och visa det slumpade ordet. try again knapp
 //11. Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" och skapa en play again knapp
