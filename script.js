@@ -5,16 +5,19 @@ let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'
 //Skapa för att kunna nå randomIndex utanför alla funktioner
 let randomIndex; 
 let splitWord;
+let displaySplitWord = document.querySelector('.main__randomWord');
 
 //2. Skapa initiate game knapp
 let gameStart = document.querySelector('#header__button')
 gameStart.addEventListener('click', ()=>{
 
+    displaySplitWord.innerHTML = '';
+
     randomIndex = getRandomWord(words)
     splitWord = wordSplitter(randomIndex)
 
     console.log(randomIndex);
-    console.log(splitWord);
+    //console.log(splitWord);
 
 });
 
@@ -28,11 +31,28 @@ function getRandomWord(randomWord){
 //lägger ordet i array splittad med 1 bokstav per index
 function wordSplitter(randomWord) {
     let splitWord = randomWord.split('')
-    let displaySplitWord = document.querySelector('.main__randomWord')
-    displaySplitWord.innerHTML = splitWord.join('');
-    return splitWord;
-    // console.log(splitWord);
+
+    hideChars(splitWord);
+
+    //return splitWord;
+    console.log(splitWord);
 }
+
+function hideChars(splitWord) {
+    // forEach loop som skapar en span mellan varje index, för att få understäcken
+    splitWord.forEach((item, index) => {
+        const span = document.createElement('span');
+        span.textContent = item;
+        //Göm texten, ej understräcken
+        span.innerText = '_';
+        //span.style.textDecoration = 'underline';
+        span.style.marginRight = '10px';
+        displaySplitWord.appendChild(span);
+        console.log(span);
+});
+}
+
+
 
 //5. input fält som bara kan ha en bokstav som alternativ
 let maxInput = document.getElementById('inputText').addEventListener('input', function(inputMax){
@@ -63,6 +83,7 @@ submitButton.addEventListener('click', () =>{
     }
 
 })
+//Gör chars till stora bokstäver
 
 //9. + display image och kör en countdown på de 6 försöken
 //10. ifall countdown hamnar på 0, kalla på diven "Game over" och visa det slumpade ordet. try again knapp
