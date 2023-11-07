@@ -113,6 +113,16 @@ const maxInput = document.getElementById('inputText');
 const wrongChars = document.querySelector('.main__wrongUsedWords');
 const submitButton = document.querySelector('#submitButton');
 
+// Variables for hangman SVG elements
+const hangmanHead = document.getElementById('head');
+const hangmanBody = document.getElementById('body');
+const hangmanArms = document.getElementById('arms');
+const hangmanLegs = document.getElementById('legs');
+const hangmanScaffold = document.getElementById('scaffold');
+
+// Counter for wrong guesses
+let wrongGuessCount = 0;
+
 function getRandomWordFromArray(wordArray) {
   return wordArray[Math.floor(Math.random() * wordArray.length)];
 }
@@ -148,7 +158,51 @@ submitButton.addEventListener('click', () => {
     wrongArray.push(guessedLetter);
     console.log('Letter is NOT in the word');
     wrongChars.innerText = wrongArray.join(', '); // Display wrong letters
+
+    // Increment wrong guess count and update hangman drawing
+    wrongGuessCount++;
+    updateHangmanDrawing(wrongGuessCount);
   }
 });
+
+function updateHangmanDrawing(wrongGuessCount) {
+  // Display hangman parts one by one for each wrong guess
+  switch (wrongGuessCount) {
+    case 1:
+      hangmanScaffold.style.visibility = 'visible';
+      break;
+    case 2:
+      hangmanHead.style.visibility = 'visible';
+      break;
+    case 3:
+      hangmanBody.style.visibility = 'visible';
+      break;
+    case 4:
+      hangmanArms.style.visibility = 'visible';
+      break;
+    case 5:
+      hangmanLegs.style.visibility = 'visible';
+      break;
+    case 6:
+      // Game over - implement game over logic here
+      gameOver();
+      break;
+    default:
+      break;
+  }
+}
+
+function gameOver() {
+  // Implement game over logic here, e.g., showing a message and disabling further input
+  console.log('Game over');
+  // You can add more actions like disabling input and displaying a message to indicate the game is over.
+  maxInput.disabled = true;
+  submitButton.disabled = true;
+}
+
+// Initialize the game by selecting a random word
+randomIndex = Math.floor(Math.random() * words.length);
+splitWord = splitWordIntoChars(words[randomIndex]);
+
 
 */ 
