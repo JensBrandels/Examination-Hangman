@@ -1,180 +1,221 @@
 /* GENERAL SETTINGS */
-
 :root {
-
     /* Colors */
-    --dusk-1: hsl(0, 0%, 90%); /* Dusk 1 - Very light gray */
-    --dusk-2: hsl(0, 0%, 80%); /* Dusk 2 - Light gray */
-    --dusk-3: hsl(0, 0%, 70%); /* Dusk 3 - Medium-light gray */
-    --dusk-4: hsl(0, 0%, 60%); /* Dusk 4 - Medium gray */
-    --dusk-5: hsl(0, 0%, 50%); /* Dusk 5 - Medium-dark gray */
-    --dusk-6: hsl(0, 0%, 40%); /* Dusk 6 - Dark gray */
-    --dusk-7: hsl(0, 0%, 30%); /* Dusk 7 - Very dark gray */
-    --dusk-8: hsl(0, 0%, 20%); /* Dusk 8 - Nearly black gray */
+    --dusk-1: hsl(0, 0%, 90%);
+    --dusk-2: hsl(0, 0%, 80%);
+    --dusk-3: hsl(0, 0%, 70%);
+    --dusk-4: hsl(0, 0%, 60%);
+    --dusk-5: hsl(0, 0%, 50%);
+    --dusk-6: hsl(0, 0%, 40%);
+    --dusk-7: hsl(0, 0%, 30%);
+    --dusk-8: hsl(0, 0%, 20%);
+    --enviro: hsl(120, 100%, 20%);
+
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.5rem;
+    --font-size-h3: 1.125rem;
+    --font-size-h4: 0.75rem;
+    --font-size-h5: 0.5rem;
+    --font-size-h6: 0.333rem;
+    --font-size-p: 1rem;
 }
 
 * {
+    box-sizing: border-box;
+    color: var(--dusk-8);
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    color: var(--dusk-8, hsl(0, 0%, 20%));
+}
+
+/* TYPOGRAPHY */
+body {
+    background-color: #fff;
+    color-scheme: light dark;
+    font-family: sans-serif;
+    padding: 50px;
 }
 
 h1 {
-    font-size: 32px;
+    font-size: var(--font-size-h1);
 }
 
 h2 {
-    font-size: 21.33px;
+    font-size: var(--font-size-h2);
 }
 
 h3 {
-    font-size: 32px;
+    font-size: var(--font-size-h3);
 }
 
 h4 {
-    font-size: 21.33px;
+    font-size: var(--font-size-h4);
 }
 
 h5 {
-    font-size: 32px;
+    font-size: var(--font-size-h5);
 }
 
 h6 {
-    font-size: 21.33px;
+    font-size: var(--font-size-h6);
 }
 
 p {
-    font-size: 16px;
+    font-size: var(--font-size-p);
 }
 
-.image {
-    width: 38.375rem;
-    height: 34.25rem;
-    flex-shrink: 0;
-    border-radius: 1rem;
-    border: 1px solid #333;
-    background: url('<path-to-image>') lightgray 50% / cover no-repeat;
-}
-
-/* MAIN CODE STARTS HERE */
-
-body {
-    font-family: sans-serif;
-    background-color: var(--dusk-1);
-    color-scheme: light dark;
-    width: 100vw;
-}
-
-.body__container {
-    border: solid 1px black;
-    margin: 3rem;
-    padding: 2rem;
-    border-radius: 1rem;
-    width: 60rem;
-    margin: 3rem auto;
-}
-
+/* HEADER */
 header {
-    text-align: center;
-    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
 }
 
-header button {
-    padding: 0.5rem 1.5rem;
+#header__button {
+    background-color: var(--dusk-5);
+    border: 1px solid var(--dusk-6);
     border-radius: 0.5rem;
-    border: none;
-    margin-top: 1rem;
+    color: var(--dusk-1);
+    font-size: var(--font-size-p);
+    padding: 10px 20px;
+}
+
+#header__button:hover {
+    background-color: var(--dusk-8);
+    color: var(--enviro);
+}
+
+/* IMAGE */
+.image {
+    background: url('<path-to-image>') lightgray 50% / cover no-repeat;
+    border: 1px solid var(--dusk-8);
+    border-radius: 0.5;
+    flex-shrink: 0;
+    height: 34.25rem;
+    width: 38.375rem;
+}
+
+/* BODY CONTAINER */
+.body__container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dusk-1);
+    border: solid 1px var(--dusk-8);
+    border-radius: 1rem;
+
+    padding: 2rem;
+    max-width: auto;
+}
+
+/* YOU WIN AND YOU LOSE */
+.header__youLoose {
+    background-color: pink;
+    display: none;
+    height: 7rem;
+    margin: 1rem;
+    width: 20rem;
 }
 
 .header__youWin {
+    background-color: pink;
     display: none;
     height: 7rem;
-    background-color: pink;
 }
 
-.header__youLoose {
-    display: none;
-    width: 20rem;
-    height: 7rem;
-    background-color: pink;
-    margin: 1rem;
-}
-
-main {
+/* MAIN CONTAINER */
+.main {
     display: flex;
-    width: 60rem;
+    flex-direction: column;
     margin: 0 auto;
-    margin-top: 1rem;
-}
-
-.main__hangMan {
-    width: 30rem;
-    height: 30rem;
-    border: solid 1px black;
+    width: 100%;
 }
 
 .main--container {
-    width: 30rem;
-    height: 30rem;
-    padding: 4rem;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-around;
+    padding: 4rem;
+    margin-top: 20px;
+    background-color: var(--dusk-4);
+    gap: 20px; 
+    border-radius: 0.5rem;
+    width: 100%;
+}
+
+.main__hangMan {
+    border: solid 1px var(--dusk-8);
+    border-radius: 0.5rem;
+    display: flex;
+    height: 30rem;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .main__randomWord {
-    width: 20rem;
-    text-align: center;
-    letter-spacing: 1rem;
-    font-size: 1.5rem;
+    font-size: var(--font-size-h1);
     font-weight: 600;
+    letter-spacing: 1rem;
+    text-align: center;
+    width: 100%;
 }
 
+/* INPUT FIELDS */
 #inputText {
-    padding: 0.5rem;
-    margin-right: 0.5rem;
+    border: 1px solid var(--dusk-8);
+    border-radius: 0.5rem;
+    font-size: var(--font-size-p);
+    padding: 0.5rem 1.5rem;
     width: 15rem;
 }
 
 #submitButton {
-    padding: 0.5rem;
-    margin-left: 0.5rem;
+    background-color: var(--enviro);
+    border: 1px solid var(--dusk-8);
+    border-radius: 0.5rem;
+    color: var(--dusk-1);
+    font-size: var(--font-size-p);
+    padding: 0.5rem 1.5rem;
+    transition: background-color 0.3s, color 0.3s;
 }
 
+#submitButton:hover {
+    background-color: var(--dusk-8);
+    color: var(--enviro);
+}
+
+/* WRONG WORDS CONTAINER */
 .main__wrongContainer {
-    width: 20rem;
-    height: 5rem;
-    display: flex;
     align-items: center;
-    border: solid 1px black;
-    border-radius: 1rem;
+    border: solid 1px var(--dusk-8);
+    border-radius: 0.5rem;
+    display: flex;
+    height: 5rem;
+    width: 100%;
 }
 
 .main__wrongUsedWords {
-    letter-spacing: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: 600;
     display: flex;
-    width: 100%;
+    font-size: var(--font-size-p);
+    font-weight: 600;
     justify-content: center;
+    letter-spacing: 0.5rem;
+    width: 100%;
 }
 
+/* COUNTDOWN */
 .main__countdown {
     align-self: flex-end;
-    margin-right: 2rem;
     display: flex;
-}
-
-.main__countdown--text {
-    display: flex;
-    align-items: center;
-    font-weight: 700;
-    font-size: 1.2rem;
-    margin-right: 0.5rem;
 }
 
 .main__countdown--circle {
-    font-size: 1.5rem;
+    font-size: var(--font-size-p);
+}
+
+.main__countdown--text {
+    align-items: center;
+    display: flex;
+    font-size: var(--font-size-p);
+    font-weight: 700;
 }
