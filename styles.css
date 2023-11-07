@@ -80,6 +80,11 @@ header {
     padding: 10px 20px;
 }
 
+#header__button:hover {
+    background-color: var(--dusk-8);
+    color: var(--enviro);
+}
+
 /* IMAGE */
 .image {
     background: url('<path-to-image>') lightgray 50% / cover no-repeat;

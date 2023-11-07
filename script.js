@@ -1,6 +1,30 @@
-//1. Skapa initiate game knapp
-//2. Skapa array med ord
+
+//1. Skapa array med ord
+
+let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond']
+console.log(words);
+//2. Skapa initiate game knapp
+
+let gameStart = document.querySelector('#header__button')
+gameStart.addEventListener('click', ()=>{
+
+    getRandomWord(words)
+
+});
+
+
 //3. slumpa ut random ord med math.random och lägg i en tom array
+function getRandomWord(words){
+
+    const randomIndex = words[Math.floor(Math.random() * words.length)]; 
+    
+
+    let displayWord = document.querySelector('.main__randomWord')
+    displayWord.innerHTML = randomIndex;
+    
+    return randomIndex;
+}
+console.log(getRandomWord(words));
 //4. Gör den tomma arrayens nyinlagda string till : ['s't'r'i'n'g'] dynamisk nyckel ? 
 //5. input fält som bara kan ha en bokstav som alternativ
 //6. Jämför den mot den dynamiska nyckeln på submit knappen (enter)
