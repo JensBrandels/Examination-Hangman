@@ -5,10 +5,13 @@ let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'
 //Skapa för att kunna nå randomIndex utanför alla funktioner
 let randomIndex; 
 let splitWord;
+let displaySplitWord = document.querySelector('.main__randomWord');
 
 //2. Skapa initiate game knapp
 let gameStart = document.querySelector('#header__button')
 gameStart.addEventListener('click', ()=>{
+
+    displaySplitWord.innerHTML = '';
 
     randomIndex = getRandomWord(words)
     splitWord = wordSplitter(randomIndex)
@@ -49,6 +52,8 @@ function hideChars(splitWord) {
 });
 }
 
+
+
 //5. input fält som bara kan ha en bokstav som alternativ
 let maxInput = document.getElementById('inputText').addEventListener('input', function(inputMax){
     let maxChars = 1;
@@ -78,6 +83,7 @@ submitButton.addEventListener('click', () =>{
     }
 
 })
+//Gör chars till stora bokstäver
 
 //9. + display image och kör en countdown på de 6 försöken
 //10. ifall countdown hamnar på 0, kalla på diven "Game over" och visa det slumpade ordet. try again knapp
