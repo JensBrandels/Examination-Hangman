@@ -84,6 +84,9 @@ submitButton.addEventListener('click', () =>{
 
 })
 //Gör chars till stora bokstäver
+//Få hjälp med att få understräck att fungera
+//hjälp med att jämföra bokstäverna i ordet med inputbokstav
+
 
 //9. + display image och kör en countdown på de 6 försöken
 //10. ifall countdown hamnar på 0, kalla på diven "Game over" och visa det slumpade ordet. try again knapp
