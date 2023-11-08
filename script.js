@@ -150,47 +150,88 @@ function restartGame(){
 
 
 /*
+document.addEventListener('DOMContentLoaded', function () {
+  const randomWords = ['apple', 'banana', 'cherry', 'date', 'elderberry']; // Add more words
+  let currentWord = '';
+  let guessedWord = [];
+  let remainingTries = 5;
 
-function checkWin() {
-    if (underlines === pickedWord) {
-        displaySplitWord.innerHTML = pickedWord;
-        gameStart.innerText = 'You won! Play again';
-        submitButton.disabled = true;
-    }
-}
+  const headerButton = document.getElementById('header__button');
+  const submitButton = document.getElementById('submitButton');
+  const inputText = document.getElementById('inputText');
+  const hangmanFigureParts = document.querySelectorAll('#scaffold, #legs, #arms, #body, #head');
+  const countdownCircle = document.querySelector('.main__countdown--circle');
+  const wrongUsedWords = document.querySelector('.main__wrongUsedWords');
+  const youWinMessage = document.querySelector('.header__youWin');
+  const youLoseMessage = document.querySelector('.header__youLoose');
 
-submitButton.addEventListener('click', () => {
-    if (gameStart.disabled) return; 
-    const guessedLetter = document.getElementById('inputText').value.toLowerCase(); 
+  function initializeGame() {
+    // Reset game variables
+    currentWord = getRandomWord();
+    guessedWord = Array(currentWord.length).fill('_');
+    remainingTries = 5;
+    updateHangman(remainingTries);
+    updateWordDisplay();
+    countdownCircle.textContent = remainingTries;
+    wrongUsedWords.textContent = '';
+    youWinMessage.style.display = 'none';
+    youLoseMessage.style.display = 'none';
+  }
 
-    if (wrongArray.includes(guessedLetter)) {
-        // Prevent guessing the same letter again
-        alert('You already guessed this letter.');
-        return;
-    }
+  function getRandomWord() {
+    return randomWords[Math.floor(Math.random() * randomWords.length)];
+  }
 
-    underlinesArray = underlines.split('');
+  function updateWordDisplay() {
+    const wordDisplay = guessedWord.join(' ');
+    document.querySelector('.main__randomWord').textContent = wordDisplay;
+  }
 
-    if (pickedWord.includes(guessedLetter)) {
-        for (let i = 0; i < pickedWord.length; i++) {
-            if (pickedWord[i] === guessedLetter) {
-                underlinesArray[i] = guessedLetter;
-            }
+  function updateHangman(tries) {
+    hangmanFigureParts.forEach((part, index) => {
+      if (index < 5 - tries) {
+        part.style.display = 'none';
+      } else {
+        part.style.display = 'block';
+      }
+    });
+  }
+
+  function checkGuess() {
+    const guessedChar = inputText.value.toLowerCase();
+    inputText.value = '';
+
+    if (currentWord.includes(guessedChar)) {
+      for (let i = 0; i < currentWord.length; i++) {
+        if (currentWord[i] === guessedChar) {
+          guessedWord[i] = guessedChar;
         }
-        underlines = underlinesArray.join('');
-        displaySplitWord.innerHTML = underlines;
-        checkWin(); // Check if the player has won
+      }
+      updateWordDisplay();
+
+      if (!guessedWord.includes('_')) {
+        // All letters guessed, player wins
+        youWinMessage.style.display = 'block';
+      }
     } else {
-        wrongArray.push(guessedLetter);
-        wrongChars.innerText = wrongArray.join(', ');
-        wrongGuessCount++;
-        triesLeft--;
-        document.querySelector('.main__countdown--circle').innerText = `${triesLeft}`;
-        updateHangmanDrawing(wrongGuessCount);
-        if (wrongGuessCount === 5) {
-            gameOver();
-        }
+      remainingTries--;
+      updateHangman(remainingTries);
+      countdownCircle.textContent = remainingTries;
+
+      if (remainingTries === 0) {
+        // No more tries left, player loses
+        youLoseMessage.style.display = 'block';
+      }
+
+      wrongUsedWords.textContent += `${guessedChar} `;
     }
+  }
+
+  headerButton.addEventListener('click', initializeGame);
+  submitButton.addEventListener('click', checkGuess);
+
+  initializeGame();
 });
+
 
 */ 
