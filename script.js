@@ -20,11 +20,6 @@ const hangmanScaffold = document.getElementById('scaffold');
 
 // Counters
 let wrongGuessCount = 0;
-// let counter = 5
-
-// let triesLeft = document.querySelector('.main__countdown--circle')
-// triesLeft.innerText = `${counter}`
-
 let triesLeft = 5
 
 //2. Skapa initiate game knapp
@@ -114,8 +109,8 @@ function gameOver() {
 }
 
 function restartGame(){
-    wrongGuessCount.innerText = 0;
-    triesLeft.innerText = 5
+    wrongGuessCount = 0;
+    triesLeft.innerHTML = '5'
 }
 //Gör chars till stora bokstäver
 //Få hjälp med att få understräck att fungera
