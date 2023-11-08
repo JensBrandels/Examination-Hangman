@@ -4,6 +4,7 @@ let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'
 //Skapa för att kunna nå randomIndex utanför alla funktioner
 let randomIndex; 
 let pickedWord;
+let underlines;
 let wrongArray = [];
 const wrongChars = document.querySelector('.main__wrongUsedWords');
 const submitButton = document.querySelector('#submitButton');
@@ -42,10 +43,8 @@ function getRandomWord(){
 //7. If else sats inkluderar bokstaven gör en funktion som skriver ut den på submitknappen
 submitButton.addEventListener('click', () => {
     const guessedLetter = document.getElementById('inputText').value;
-    let newWord = pickedWord.split('');
-    console.log(pickedWord);
-  
-    if (newWord.includes(guessedLetter)) {
+    
+    if (pickedWord.includes(guessedLetter)) {
       console.log('Letter is in the word');
     } else {
       wrongArray.push(guessedLetter);
