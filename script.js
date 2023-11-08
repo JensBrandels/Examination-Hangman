@@ -164,4 +164,98 @@ function restartGame(){
 //Återställa input fältet vid varje submit
 // Enter på submit knappen
 // Visa det slumpade ordet i (you loose)
-// kopiera in och visa det slumpade ordet när man förlorar
+
+
+//11. Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" och skapa en play again knapp
+
+
+
+
+
+
+/*
+document.addEventListener('DOMContentLoaded', function () {
+  const randomWords = ['apple', 'banana', 'cherry', 'date', 'elderberry']; 
+  let currentWord = '';
+  let guessedWord = [];
+  let remainingTries = 5;
+
+  const headerButton = document.getElementById('header__button');
+  const submitButton = document.getElementById('submitButton');
+  const inputText = document.getElementById('inputText');
+  const hangmanFigureParts = document.querySelectorAll('#scaffold, #legs, #arms, #body, #head');
+  const countdownCircle = document.querySelector('.main__countdown--circle');
+  const wrongUsedWords = document.querySelector('.main__wrongUsedWords');
+  const youWinMessage = document.querySelector('.header__youWin');
+  const youLoseMessage = document.querySelector('.header__youLoose');
+
+  function initializeGame() {
+    // Reset game variables
+    currentWord = getRandomWord();
+    guessedWord = Array(currentWord.length).fill('_');
+    remainingTries = 5;
+    updateHangman(remainingTries);
+    updateWordDisplay();
+    countdownCircle.textContent = remainingTries;
+    wrongUsedWords.textContent = '';
+    youWinMessage.style.display = 'none';
+    youLoseMessage.style.display = 'none';
+  }
+
+  function getRandomWord() {
+    return randomWords[Math.floor(Math.random() * randomWords.length)];
+  }
+
+  function updateWordDisplay() {
+    const wordDisplay = guessedWord.join(' ');
+    document.querySelector('.main__randomWord').textContent = wordDisplay;
+  }
+
+  function updateHangman(tries) {
+    hangmanFigureParts.forEach((part, index) => {
+      if (index < 5 - tries) {
+        part.style.display = 'none';
+      } else {
+        part.style.display = 'block';
+      }
+    });
+  }
+
+  function checkGuess() {
+    const guessedChar = inputText.value.toLowerCase();
+    inputText.value = '';
+
+    if (currentWord.includes(guessedChar)) {
+      for (let i = 0; i < currentWord.length; i++) {
+        if (currentWord[i] === guessedChar) {
+          guessedWord[i] = guessedChar;
+        }
+      }
+      updateWordDisplay();
+
+      if (!guessedWord.includes('_')) {
+        // All letters guessed, player wins
+        youWinMessage.style.display = 'block';
+      }
+    } else {
+      remainingTries--;
+      updateHangman(remainingTries);
+      countdownCircle.textContent = remainingTries;
+
+      if (remainingTries === 0) {
+        // No more tries left, player loses
+        youLoseMessage.style.display = 'block';
+      }
+
+      wrongUsedWords.textContent += `${guessedChar} `;
+    }
+  }
+
+  headerButton.addEventListener('click', initializeGame);
+  submitButton.addEventListener('click', checkGuess);
+
+  initializeGame();
+});
+
+
+*/ 
