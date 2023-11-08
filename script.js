@@ -4,6 +4,7 @@ let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'
 //Skapa för att kunna nå randomIndex utanför alla funktioner
 let randomIndex; 
 let pickedWord;
+let underlines;
 let wrongArray = [];
 const wrongChars = document.querySelector('.main__wrongUsedWords');
 const submitButton = document.querySelector('#submitButton');
@@ -25,13 +26,12 @@ gameStart.addEventListener('click', ()=>{
 
     displaySplitWord.innerHTML = '';
 
-    let pickedWord = getRandomWord()
-    let underlines = pickedWord.split('').fill('_',0).join('')
+    pickedWord = getRandomWord()
+    underlines = pickedWord.split('').fill('_',0).join('')
     displaySplitWord.innerHTML = underlines
 
     console.log(pickedWord);
-    //console.log(splitWord);
-
+    console.log(underlines);
 });
 
 //3. slumpa ut random ord med math.random och lägg i en tom array
@@ -42,15 +42,20 @@ function getRandomWord(){
 //7. If else sats inkluderar bokstaven gör en funktion som skriver ut den på submitknappen
 submitButton.addEventListener('click', () => {
     const guessedLetter = document.getElementById('inputText').value;
-    let newWord = pickedWord.split('');
-    console.log(pickedWord);
-  
-    if (newWord.includes(guessedLetter)) {
+    pickedWord.split('');
+    //console.log(pickedWord.split(''));
+
+    if (pickedWord.includes(guessedLetter)) {
       console.log('Letter is in the word');
+      for (let i = 0; i < pickedWord.length; i++) {
+        guessedLetter = underlines[i]
+        console.log(pickedWord[i]);
+      }
     } else {
       wrongArray.push(guessedLetter);
       console.log('Letter is NOT in the word');
-      wrongChars.innerText = wrongArray.join(', '); // Display wrong letters
+      wrongChars.innerText = wrongArray.join(', '); 
+      // Display wrong letters
   
       // Increment wrong guess count and update hangman drawing
       wrongGuessCount++;
