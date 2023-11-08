@@ -117,94 +117,41 @@ function gameOver() {
 
 /*
 
-let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'];
+submitButton.addEventListener('click', () => {
+    const guessedLetter = document.getElementById('inputText').value.toLowerCase(); // Convert input to lowercase
 
-let currentWord;
-let guessedLetters;
-let remainingTries;
-
-document.addEventListener('DOMContentLoaded', () => {
-
-currentWord = getRandomWord(words);
-guessedLetters = [];
-remainingTries = 6;
-
-const startButton = document.getElementById('header__button');
-const inputText = document.getElementById('inputText');
-const submitButton = document.getElementById('submitButton');
-const randomWordDisplay = document.querySelector('.main__randomWord');
-const countdownCircle = document.querySelector('.main__countdown--circle');
-const wrongUsedWords = document.querySelector('.main__wrongUsedWords');
-
-startButton.addEventListener('click', () => {
-  // Reset game variables and UI elements
-  currentWord = getRandomWord(words);
-  guessedLetters = [];
-  remainingTries = 6;
-  randomWordDisplay.textContent = currentWord.replace(/[a-zA-Z]/g, '_ ');
-  countdownCircle.textContent = remainingTries;
-  wrongUsedWords.textContent = '';
-  inputText.value = '';
-});
-
-submitButton.addEventListener('click', (e) => {
-e.preventDefault(); 
-const inputLetter = inputText.value.trim().toLowerCase();
-
-    if (inputLetter.length !== 1 || !inputLetter.match(/[a-z]/)) {
-  alert('Please enter a valid letter (a-z).');
-  return;
-}
-
-  if (guessedLetters.includes(inputLetter)) {
-  alert('You already guessed that letter.');
-  return;
-}
-
-    guessedLetters.push(inputLetter);
-if (!currentWord.includes(inputLetter)) {
-  remainingTries--;
-}
-
-updateWordDisplay();
-updateCountdown();
-updateWrongUsedWords();
-inputText.value = '';
-
-if (remainingTries === 0) {
-  alert(`Game Over! The word was "${currentWord}".`);
-  inputText.disabled = true; 
-} else if (currentWord.split('').every(letter => guessedLetters.includes(letter))) {
-  alert('Congratulations! You Win!');
-  inputText.disabled = true; 
-}
-});
-
-function getRandomWord(wordList) {
-const randomIndex = Math.floor(Math.random() * wordList.length);
-return wordList[randomIndex];
-}
-
-function updateWordDisplay() {
-  let display = '';
-  for (const letter of currentWord) {
-    if (guessedLetters.includes(letter)) {
-      display += letter;
+    if (pickedWord.includes(guessedLetter)) {
+        // The guessed letter is in the word
+        let underlinesArray = underlines.split('');
+        for (let i = 0; i < pickedWord.length; i++) {
+            if (pickedWord[i] === guessedLetter) {
+                underlinesArray[i] = guessedLetter;
+            }
+        }
+        underlines = underlinesArray.join('');
+        displaySplitWord.innerHTML = underlines;
+        
+        // Check if the player has guessed the entire word
+        if (underlines === pickedWord) {
+            // You win! Implement win logic here
+            gameWon();
+        }
     } else {
-      display += '_';
+        // The guessed letter is not in the word
+        wrongArray.push(guessedLetter);
+        wrongChars.innerText = wrongArray.join(', ');
+        
+        // Increment wrong guess count and update hangman drawing
+        wrongGuessCount++;
+        updateHangmanDrawing(wrongGuessCount);
+        
+        // Check if the player has reached the maximum wrong guesses
+        if (wrongGuessCount === 6) {
+            // Game over - implement game over logic here
+            gameOver();
+        }
     }
-    display += ' ';
-  }
-  randomWordDisplay.textContent = display;
-}
-
-function updateCountdown() {
-  countdownCircle.textContent = remainingTries;
-}
-
-  function updateWrongUsedWords() {
-  wrongUsedWords.textContent = guessedLetters.join(' ');
-}
 });
+
 
 */ 
