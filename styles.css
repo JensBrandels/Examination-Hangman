@@ -107,19 +107,24 @@ header {
 }
 
 /* YOU WIN AND YOU LOSE */
-.header__youLoose,
+/* Style the winning message */
 .header__youWin {
-    border: 1px solid var(--dusk-8);
-    background-color: var(--dusk-1);
-    color: var(--dusk-8);
-    visibility: hidden;
-    height: 7rem;
-    margin: 1rem;
-    width: 20rem;
+    text-align: center; /* Center align text */
+    background-color: green; /* Background color for winning message */
+    color: white; /* Text color */
+    padding: 10px; /* Add padding for spacing */
+    border-radius: 0.5rem; /* Rounded corners */
+    margin: 10px; /* Add margin for spacing */
 }
 
-.header__youWin {
-    height: 7rem;
+/* Style the losing message */
+.header__youLoose {
+    text-align: center; /* Center align text */
+    background-color: red; /* Background color for losing message */
+    color: white; /* Text color */
+    padding: 10px; /* Add padding for spacing */
+    border-radius: 0.5rem; /* Rounded corners */
+    margin: 10px; /* Add margin for spacing */
 }
 
 /* MAIN CONTAINER */
