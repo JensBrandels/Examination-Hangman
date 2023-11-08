@@ -101,3 +101,114 @@ function gameOver() {
   maxInput.disabled = true;
   submitButton.disabled = true;
 }
+
+
+
+
+/*
+
+let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'];
+
+let randomIndex; 
+let pickedWord;
+let wrongArray = [];
+const wrongChars = document.querySelector('.main__wrongUsedWords');
+const submitButton = document.querySelector('#submitButton');
+const displaySplitWord = document.querySelector('.main__randomWord');
+
+const hangmanHead = document.getElementById('head');
+const hangmanBody = document.getElementById('body');
+const hangmanArms = document.getElementById('arms');
+const hangmanLegs = document.getElementById('legs');
+const hangmanScaffold = document.getElementById('scaffold');
+const countdownCircle = document.querySelector('.main__countdown--circle');
+
+let wrongGuessCount = 0;
+const maxWrongGuesses = 6;
+
+let gameStart = document.querySelector('#header__button');
+gameStart.addEventListener('click', () => {
+    displaySplitWord.innerHTML = '';
+    wrongChars.innerText = 'Wrong Guesses: ';
+    countdownCircle.innerText = maxWrongGuesses;
+    wrongArray = [];
+    wrongGuessCount = 0;
+
+    let pickedWord = getRandomWord();
+    let underlines = pickedWord.split('').fill('_', 0).join('');
+    displaySplitWord.innerHTML = underlines;
+});
+
+function getRandomWord() {
+    return words[Math.floor(Math.random() * words.length)];
+}
+
+submitButton.addEventListener('click', () => {
+    const guessedLetter = document.getElementById('inputText').value;
+    let newWord = pickedWord.split();
+
+    if (newWord.includes(guessedLetter)) {
+        // Letter is in the word
+        displaySplitWord.innerHTML = displayWordWithGuess(pickedWord, displaySplitWord.innerHTML, guessedLetter);
+        if (displaySplitWord.innerHTML === pickedWord) {
+            gameWin();
+        }
+    } else {
+        // Letter is NOT in the word
+        wrongArray.push(guessedLetter);
+        wrongChars.innerText = 'Wrong Guesses: ' + wrongArray.join(', ');
+        wrongGuessCount++;
+        countdownCircle.innerText = maxWrongGuesses - wrongGuessCount;
+        updateHangmanDrawing(wrongGuessCount);
+    }
+});
+
+function displayWordWithGuess(word, displayedWord, guessedLetter) {
+    let newDisplayedWord = '';
+    for (let i = 0; i < word.length; i++) {
+        if (word[i] === guessedLetter || displayedWord[i] !== '_') {
+            newDisplayedWord += word[i];
+        } else {
+            newDisplayedWord += '_';
+        }
+    }
+    return newDisplayedWord;
+}
+
+function updateHangmanDrawing(wrongGuessCount) {
+    switch (wrongGuessCount) {
+        case 1:
+            hangmanScaffold.style.display = 'block';
+            break;
+        case 2:
+            hangmanHead.style.display = 'block';
+            break;
+        case 3:
+            hangmanBody.style.display = 'block';
+            break;
+        case 4:
+            hangmanArms.style.display = 'block';
+            break;
+        case 5:
+            hangmanLegs.style.display = 'block';
+            break;
+        case 6:
+            gameOver();
+            break;
+        default:
+            break;
+    }
+}
+
+function gameWin() {
+    console.log('You win!');
+    submitButton.disabled = true;
+}
+
+function gameOver() {
+    console.log('Game over');
+    submitButton.disabled = true;
+}
+
+
+*/ 
