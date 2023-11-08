@@ -42,26 +42,31 @@ function getRandomWord(){
 //7. If else sats inkluderar bokstaven gör en funktion som skriver ut den på submitknappen
 submitButton.addEventListener('click', () => {
     const guessedLetter = document.getElementById('inputText').value;
-    let newWord = pickedWord.split('');
+    
     console.log(pickedWord);
-  
-    if (newWord.includes(guessedLetter)) {
+    let underlinesArray = underlines.split('')
+    
+   for (let i = 0; i < pickedWord.length; i++) {
+    if (pickedWord[i] === (guessedLetter)) {
       console.log('Letter is in the word');
-      for (let i = 0; i < pickedWord.length; i++) {
-        guessedLetter = underlines[i]
-        console.log(pickedWord[i]);
-      }
-    } else {
-      wrongArray.push(guessedLetter);
-      console.log('Letter is NOT in the word');
-      wrongChars.innerText = wrongArray.join(', '); 
-      // Display wrong letters
-  
-      // Increment wrong guess count and update hangman drawing
-      wrongGuessCount++;
-      updateHangmanDrawing(wrongGuessCount);
+      // Här behöver vi uppdatera underlines på index i med guessedLetter
+      
+      underlinesArray[i] = guessedLetter
+      
+      console.log(underlinesArray);
+    // Men underlines är en sträng just nu, så vi behöver göra den till en array först
+        } else {
+        wrongArray.push(guessedLetter);
+        console.log('Letter is NOT in the word');
+        wrongChars.innerText = wrongArray.join(', '); 
+        // Display wrong letters
+    
+        // Increment wrong guess count and update hangman drawing
+        wrongGuessCount++;
+        updateHangmanDrawing(wrongGuessCount);
+        }
     }
-  });
+})
 //Gör chars till stora bokstäver
 //Få hjälp med att få understräck att fungera
 //hjälp med att jämföra bokstäverna i ordet med inputbokstav
