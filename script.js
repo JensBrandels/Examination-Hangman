@@ -27,33 +27,6 @@ function getRandomWord(){
     return words[Math.floor(Math.random() * words.length)]; 
 }
 
-
-
-// function hideChars(splitWord) {
-//     // forEach loop som skapar en span mellan varje index, för att få understäcken
-//     splitWord.forEach((item, index) => {
-//         const span = document.createElement('span');
-//         span.textContent = item;
-//         //Göm texten, ej understräcken
-//         span.innerText = '_';
-//         //span.style.textDecoration = 'underline';
-//         span.style.marginRight = '10px';
-//         displaySplitWord.appendChild(span);
-//         console.log(span);
-// });
-// }
-
-
-
-//5. input fält som bara kan ha en bokstav som alternativ
-let maxInput = document.getElementById('inputText').addEventListener('input', function(inputMax){
-    let maxChars = 1;
-
-    if(inputMax.target.value.length > maxChars) {
-        inputMax.target.value = inputMax.target.value.substr(0, maxChars);
-    }
-})
-
 let wrongArray = []
 let wrongChars = document.querySelector('.main__wrongUsedWords')
 wrongChars.innerText = wrongArray
