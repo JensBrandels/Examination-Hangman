@@ -5,10 +5,13 @@ let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'
 let pickedWord;
 let underlines;
 let underlinesArray;
+let guessedLetter;
 let wrongArray = [];
 let wrongChars = document.querySelector('.main__wrongUsedWords');
-const submitButton = document.querySelector('#submitButton');
+let submitButton = document.querySelector('#submitButton');
 let displaySplitWord = document.querySelector('.main__randomWord');
+let win = document.querySelector('.header__youWin');
+let loose = document.querySelector('.header__youLoose');
 
 // Variables for hangman SVG elements
 const hangmanHead = document.getElementById('head');
@@ -45,19 +48,27 @@ function getRandomWord(){
 }
 
 //7. If else sats inkluderar bokstaven gör en funktion som skriver ut den på submitknappen
-submitButton.addEventListener('click', () => {
-    const guessedLetter = document.getElementById('inputText').value;
+submitButton.addEventListener('click', 'keypress', () => {
+    guessedLetter = document.getElementById('inputText').value;
+    guessedLetter.value = '';//ändra sen
+
+    //koppla enter till submitbutton 
     
-    console.log(pickedWord);
-    underlinesArray = underlines.split('')
-    
+    underlinesArray = underlines.split('');
+
+    //Ej kunna submita samma bokstav 2 ggr
+    if (wrongArray.includes(guessedLetter)) {
+      return
+    }
+
     if (pickedWord.includes(guessedLetter)) {
         for (let i = 0; i < pickedWord.length; i++) {
             if (pickedWord[i] === guessedLetter) {
                 underlinesArray[i] = guessedLetter;
                 underlines = underlinesArray.join('')
-                console.log(underlinesArray);
+                console.log(underlinesArray);//logga varje bokstav för att se vart de hamnar i arrayen
                 displaySplitWord.innerHTML = underlines
+                checkWin();
             }
         }
     } else {
@@ -73,7 +84,7 @@ submitButton.addEventListener('click', () => {
         updateHangmanDrawing(wrongGuessCount);
     }
 })
-
+//9. display image funktion
 function updateHangmanDrawing(wrongGuessCount) {
   // Display hangman parts one by one for each wrong guess
   switch (wrongGuessCount) {
@@ -99,8 +110,17 @@ function updateHangmanDrawing(wrongGuessCount) {
   }
 }
 
+function checkWin() {
+  if (underlines === pickedWord) {
+      win.style.visibility = 'visible';
+      displaySplitWord.innerHTML = pickedWord;
+      submitButton.disabled = true;
+  }
+}
+
 function gameOver() {
   // gameOver funktion som ska visa meddelandet (Game Over)
+  loose.style.visibility = 'visible';
   console.log('Game over');
 
   // Ändrar texten på button till 'Try again'
@@ -108,6 +128,7 @@ function gameOver() {
   submitButton.disabled = true;
 }
 
+//10. Kalla på diven "Game over" och visa det slumpade ordet. try again knapp
 function restartGame(){
   // återställ bilden till gömd
   hangmanScaffold.style.visibility = 'hidden';
@@ -116,32 +137,38 @@ function restartGame(){
   hangmanArms.style.visibility = 'hidden';
   hangmanLegs.style.visibility = 'hidden';
 
+  pickedWord = null;
+  underlines = null;
+  underlinesArray = null;
+  displaySplitWord.innerHTML = '';
+
+  // återställ guessCount
+  wrongGuessCount = 0;
+
   // återställ triesLeft till 5
   triesLeft = 5;
   document.getElementsByClassName('main__countdown--circle')[0].innerHTML = `${triesLeft}`;
 
   // återställ wrongArray
   wrongArray = [];
-  wrongArray = document.querySelector('.main__wrongUsedWords');
-}
-  /*  document.getElementsByClassName('main__countdown--circle').innerText = '5';
-  pickedWord = null;
-  underlines = null;
-  underlinesArray = null;
-  wrongArray = [];
   wrongChars.innerText = '';
-  wrongGuessCount = 0;
-  displaySplitWord.innerHTML = '';
-  wrongGuessCount.innerText = 0;
+
+  // göm checkWin + loose
+  win.style.visibility = 'hidden';
+  loose.style.visibility = 'hidden';
+
+  // återställ submit knappen
+  submitButton.disabled = false;
+}
 
 
+
+//Återställa input fältet vid varje submit
 //Gör chars till stora bokstäver
-//Få hjälp med att få understräck att fungera
-//hjälp med att jämföra bokstäverna i ordet med inputbokstav
+// Enter på submit knappen
+// Visa det slumpade ordet i (you loose)
 
 
-//9. + display image och kör en countdown på de 6 försöken
-//10. ifall countdown hamnar på 0, kalla på diven "Game over" och visa det slumpade ordet. try again knapp
 //11. Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" och skapa en play again knapp
 
 
