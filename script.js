@@ -2,12 +2,11 @@
 let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond']
 
 //Skapa för att kunna nå randomIndex utanför alla funktioner
-let randomIndex; 
 let pickedWord;
 let underlines;
 let underlinesArray;
 let wrongArray = [];
-const wrongChars = document.querySelector('.main__wrongUsedWords');
+let wrongChars = document.querySelector('.main__wrongUsedWords');
 const submitButton = document.querySelector('#submitButton');
 let displaySplitWord = document.querySelector('.main__randomWord');
 
@@ -20,22 +19,18 @@ const hangmanScaffold = document.getElementById('scaffold');
 
 // Counters
 let wrongGuessCount = 0;
-// let counter = 5
-
-// let triesLeft = document.querySelector('.main__countdown--circle')
-// triesLeft.innerText = `${counter}`
-
 let triesLeft = 5
 
 //2. Skapa initiate game knapp
 let gameStart = document.querySelector('#header__button')
 gameStart.addEventListener('click', ()=>{
-
-    restartGame()
-
+    // kalla på restartGame funktionen för att nolställa bilden och triesLeft
+    restartGame();
+    // byter ut texten på button
     gameStart.innerText = 'Restart'
-    displaySplitWord.innerHTML = '';
 
+    // understräcken
+    displaySplitWord.innerHTML = '';
     pickedWord = getRandomWord()
     underlines = pickedWord.split('').fill('_',0).join('')
     displaySplitWord.innerHTML = underlines
@@ -66,17 +61,16 @@ submitButton.addEventListener('click', () => {
             }
         }
     } else {
+        // lägg in fel i wrongarray
         wrongArray.push(guessedLetter);
         console.log('Letter is NOT in the word');
         wrongChars.innerText = wrongArray.join(', '); 
-        // lägg in fel i wrongarray för att visa på hemsidan
     
         // uppdaterar fel i en counter och visar hangman bilderna på hemsidan via funktionen update hangmanDrawing
         wrongGuessCount++;
         triesLeft--
         document.getElementsByClassName('main__countdown--circle')[0].innerHTML = `${triesLeft}`
         updateHangmanDrawing(wrongGuessCount);
-        
     }
 })
 
@@ -106,17 +100,41 @@ function updateHangmanDrawing(wrongGuessCount) {
 }
 
 function gameOver() {
-  // Implement game over logic here, e.g., showing a message and disabling further input
+  // gameOver funktion som ska visa meddelandet (Game Over)
   console.log('Game over');
-  // You can add more actions like disabling input and displaying a message to indicate the game is over.
+
+  // Ändrar texten på button till 'Try again'
   gameStart.innerText = 'Try again!'
   submitButton.disabled = true;
 }
 
 function restartGame(){
-    wrongGuessCount.innerText = 0;
-    triesLeft.innerText = 5
+  // återställ bilden till gömd
+  hangmanScaffold.style.visibility = 'hidden';
+  hangmanHead.style.visibility = 'hidden';
+  hangmanBody.style.visibility = 'hidden';
+  hangmanArms.style.visibility = 'hidden';
+  hangmanLegs.style.visibility = 'hidden';
+
+  // återställ triesLeft till 5
+  triesLeft = 5;
+  document.getElementsByClassName('main__countdown--circle')[0].innerHTML = `${triesLeft}`;
+
+  // återställ wrongArray
+  wrongArray = [];
+  wrongArray = document.querySelector('.main__wrongUsedWords');
 }
+  /*  document.getElementsByClassName('main__countdown--circle').innerText = '5';
+  pickedWord = null;
+  underlines = null;
+  underlinesArray = null;
+  wrongArray = [];
+  wrongChars.innerText = '';
+  wrongGuessCount = 0;
+  displaySplitWord.innerHTML = '';
+  wrongGuessCount.innerText = 0;
+
+
 //Gör chars till stora bokstäver
 //Få hjälp med att få understräck att fungera
 //hjälp med att jämföra bokstäverna i ordet med inputbokstav
