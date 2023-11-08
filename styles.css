@@ -9,6 +9,8 @@
     --dusk-7: hsl(0, 0%, 30%);
     --dusk-8: hsl(0, 0%, 20%);
     --enviro: hsl(120, 100%, 20%);
+    --fire: hsl(0, 100%, 50%);
+
 
     --font-size-h1: 2rem;
     --font-size-h2: 1.5rem;
@@ -109,7 +111,7 @@ header {
 /* YOU WIN AND YOU LOSE */
 .header__youWin {
     text-align: center; 
-    background-color: rgb(0, 255, 4); 
+    background-color: var(--enviro); 
     color: #fff; 
     padding: 10px; 
     border-radius: 0.5rem; 
@@ -119,7 +121,7 @@ header {
 
 .header__youLoose {
     text-align: center; 
-    background-color: rgb(255, 0, 0); 
+    background-color: var(--fire); 
     color: #fff;
     padding: 10px; 
     border-radius: 0.5rem; 
