@@ -48,7 +48,7 @@ function getRandomWord(){
 }
 
 //7. If else sats inkluderar bokstaven gör en funktion som skriver ut den på submitknappen
-submitButton.addEventListener('click', 'keypress', () => {
+submitButton.addEventListener('click', () => {
     guessedLetter = document.getElementById('inputText').value;
     guessedLetter.value = '';//ändra sen
 
@@ -109,7 +109,7 @@ function updateHangmanDrawing(wrongGuessCount) {
       break;
   }
 }
-
+//10. Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" 
 function checkWin() {
   if (underlines === pickedWord) {
       win.style.visibility = 'visible';
@@ -128,7 +128,7 @@ function gameOver() {
   submitButton.disabled = true;
 }
 
-//10. Kalla på diven "Game over" och visa det slumpade ordet. try again knapp
+//11. Kalla på diven "Game over" och visa det slumpade ordet.
 function restartGame(){
   // återställ bilden till gömd
   hangmanScaffold.style.visibility = 'hidden';
@@ -161,104 +161,7 @@ function restartGame(){
   submitButton.disabled = false;
 }
 
-
-
 //Återställa input fältet vid varje submit
-//Gör chars till stora bokstäver
 // Enter på submit knappen
 // Visa det slumpade ordet i (you loose)
-
-
-//11. Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" och skapa en play again knapp
-
-
-
-
-
-
-/*
-document.addEventListener('DOMContentLoaded', function () {
-  const randomWords = ['apple', 'banana', 'cherry', 'date', 'elderberry']; // Add more words
-  let currentWord = '';
-  let guessedWord = [];
-  let remainingTries = 5;
-
-  const headerButton = document.getElementById('header__button');
-  const submitButton = document.getElementById('submitButton');
-  const inputText = document.getElementById('inputText');
-  const hangmanFigureParts = document.querySelectorAll('#scaffold, #legs, #arms, #body, #head');
-  const countdownCircle = document.querySelector('.main__countdown--circle');
-  const wrongUsedWords = document.querySelector('.main__wrongUsedWords');
-  const youWinMessage = document.querySelector('.header__youWin');
-  const youLoseMessage = document.querySelector('.header__youLoose');
-
-  function initializeGame() {
-    // Reset game variables
-    currentWord = getRandomWord();
-    guessedWord = Array(currentWord.length).fill('_');
-    remainingTries = 5;
-    updateHangman(remainingTries);
-    updateWordDisplay();
-    countdownCircle.textContent = remainingTries;
-    wrongUsedWords.textContent = '';
-    youWinMessage.style.display = 'none';
-    youLoseMessage.style.display = 'none';
-  }
-
-  function getRandomWord() {
-    return randomWords[Math.floor(Math.random() * randomWords.length)];
-  }
-
-  function updateWordDisplay() {
-    const wordDisplay = guessedWord.join(' ');
-    document.querySelector('.main__randomWord').textContent = wordDisplay;
-  }
-
-  function updateHangman(tries) {
-    hangmanFigureParts.forEach((part, index) => {
-      if (index < 5 - tries) {
-        part.style.display = 'none';
-      } else {
-        part.style.display = 'block';
-      }
-    });
-  }
-
-  function checkGuess() {
-    const guessedChar = inputText.value.toLowerCase();
-    inputText.value = '';
-
-    if (currentWord.includes(guessedChar)) {
-      for (let i = 0; i < currentWord.length; i++) {
-        if (currentWord[i] === guessedChar) {
-          guessedWord[i] = guessedChar;
-        }
-      }
-      updateWordDisplay();
-
-      if (!guessedWord.includes('_')) {
-        // All letters guessed, player wins
-        youWinMessage.style.display = 'block';
-      }
-    } else {
-      remainingTries--;
-      updateHangman(remainingTries);
-      countdownCircle.textContent = remainingTries;
-
-      if (remainingTries === 0) {
-        // No more tries left, player loses
-        youLoseMessage.style.display = 'block';
-      }
-
-      wrongUsedWords.textContent += `${guessedChar} `;
-    }
-  }
-
-  headerButton.addEventListener('click', initializeGame);
-  submitButton.addEventListener('click', checkGuess);
-
-  initializeGame();
-});
-
-
-*/ 
+// kopiera in och visa det slumpade ordet när man förlorar
