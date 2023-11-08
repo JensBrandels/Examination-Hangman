@@ -48,19 +48,25 @@ function getRandomWord(){
 }
 
 //7. If else sats inkluderar bokstaven gör en funktion som skriver ut den på submitknappen
-submitButton.addEventListener('click', () => {
+submitButton.addEventListener('click', 'keypress', () => {
     guessedLetter = document.getElementById('inputText').value;
     guessedLetter.value = '';//ändra sen
+
+    //koppla enter till submitbutton 
     
-    console.log(pickedWord);
-    underlinesArray = underlines.split('')
-    
+    underlinesArray = underlines.split('');
+
+    //Ej kunna submita samma bokstav 2 ggr
+    if (wrongArray.includes(guessedLetter)) {
+      return
+    }
+
     if (pickedWord.includes(guessedLetter)) {
         for (let i = 0; i < pickedWord.length; i++) {
             if (pickedWord[i] === guessedLetter) {
                 underlinesArray[i] = guessedLetter;
                 underlines = underlinesArray.join('')
-                console.log(underlinesArray);
+                console.log(underlinesArray);//logga varje bokstav för att se vart de hamnar i arrayen
                 displaySplitWord.innerHTML = underlines
                 checkWin();
             }
@@ -122,6 +128,7 @@ function gameOver() {
   submitButton.disabled = true;
 }
 
+//10. Kalla på diven "Game over" och visa det slumpade ordet. try again knapp
 function restartGame(){
   // återställ bilden till gömd
   hangmanScaffold.style.visibility = 'hidden';
@@ -129,6 +136,12 @@ function restartGame(){
   hangmanBody.style.visibility = 'hidden';
   hangmanArms.style.visibility = 'hidden';
   hangmanLegs.style.visibility = 'hidden';
+
+  pickedWord = null;
+  underlines = null;
+  underlinesArray = null;
+  displaySplitWord.innerHTML = '';
+
   // återställ guessCount
   wrongGuessCount = 0;
 
@@ -145,22 +158,17 @@ function restartGame(){
   loose.style.visibility = 'hidden';
 
   // återställ submit knappen
-
+  submitButton.disabled = false;
 }
-  /*  document.getElementsByClassName('main__countdown--circle').innerText = '5';
-  pickedWord = null;
-  underlines = null;
-  underlinesArray = null;
-  wrongArray = [];
-  wrongChars.innerText = '';
-  displaySplitWord.innerHTML = '';
-  wrongGuessCount.innerText = 0;
 
 
-//Ej kunna submita samma bokstav 2 ggr
+
 //Återställa input fältet vid varje submit
 //Gör chars till stora bokstäver
-//10. ifall countdown hamnar på 0, kalla på diven "Game over" och visa det slumpade ordet. try again knapp
+// Enter på submit knappen
+// Visa det slumpade ordet i (you loose)
+
+
 //11. Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" och skapa en play again knapp
 
 
