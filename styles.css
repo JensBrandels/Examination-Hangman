@@ -109,7 +109,9 @@ header {
 
 /* YOU WIN AND YOU LOSE */
 .header__youLoose {
-    background-color: pink;
+    border: 1px solid var(--dusk-8);
+    background-color: var(--dusk-1);
+    color: var(--dusk-8);
     display: none;
     height: 7rem;
     margin: 1rem;
@@ -117,7 +119,9 @@ header {
 }
 
 .header__youWin {
-    background-color: pink;
+    border: 1px solid var(--dusk-8);
+    background-color: var(--dusk-1);
+    color: var(--dusk-8);
     display: none;
     height: 7rem;
 }
