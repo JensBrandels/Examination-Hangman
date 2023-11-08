@@ -261,14 +261,14 @@ submitButton.addEventListener('click', () => {
   }
 });
 
-// Update hangman drawing
+// Update Hangman drawing
 function updateHangmanDrawing(wrongGuessCount) {
   const parts = Object.keys(hangmanParts);
-  parts.slice(0, wrongGuessCount).forEach((part) => {
-    hangmanParts[part].style.visibility = 'visible';
-  });
+  if (wrongGuessCount <= parts.length) {
+    hangmanParts[parts[wrongGuessCount - 1]].style.visibility = 'visible';
+  }
 
-  if (wrongGuessCount === 5) {
+  if (wrongGuessCount === parts.length) {
     gameOver();
   }
 }
@@ -290,7 +290,9 @@ function gameOver() {
 }
 
 // Initialize the game on page load
-initializeGame();
+window.addEventListener('load', () => {
+  initializeGame();
+});
 
 
 */ 
