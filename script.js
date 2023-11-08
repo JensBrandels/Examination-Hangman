@@ -27,9 +27,6 @@ let wrongGuessCount = 0;
 
 let triesLeft = 5
 
-
-
-
 //2. Skapa initiate game knapp
 let gameStart = document.querySelector('#header__button')
 gameStart.addEventListener('click', ()=>{
@@ -136,12 +133,85 @@ function restartGame(){
 
 /*
 
+let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'];
+
+let randomIndex;
+let pickedWord;
+let underlines;
+let underlinesArray;
+let wrongArray = [];
+const wrongChars = document.querySelector('.main__wrongUsedWords');
+const submitButton = document.querySelector('#submitButton');
+let displaySplitWord = document.querySelector('.main__randomWord');
+
+const hangmanHead = document.getElementById('head');
+const hangmanBody = document.getElementById('body');
+const hangmanArms = document.getElementById('arms');
+const hangmanLegs = document.getElementById('legs');
+const hangmanScaffold = document.getElementById('scaffold');
+
+let wrongGuessCount = 0;
+let triesLeft = 5;
+
+function restartGame() {
+    wrongGuessCount = 0;
+    triesLeft = 5;
+    underlines = '';
+    pickedWord = '';
+    underlinesArray = [];
+    wrongArray = [];
+    wrongChars.innerText = '';
+    document.querySelector('.main__countdown--circle').innerText = `${triesLeft}`;
+    hangmanScaffold.style.visibility = 'hidden';
+    hangmanHead.style.visibility = 'hidden';
+    hangmanBody.style.visibility = 'hidden';
+    hangmanArms.style.visibility = 'hidden';
+    hangmanLegs.style.visibility = 'hidden';
+    displaySplitWord.innerHTML = '';
+}
+
+let gameStart = document.querySelector('#header__button');
+gameStart.addEventListener('click', () => {
+    restartGame();
+    gameStart.innerText = 'Restart';
+
+    pickedWord = getRandomWord();
+    underlines = pickedWord.split('').fill('_', 0).join('');
+    displaySplitWord.innerHTML = underlines;
+});
+
+function getRandomWord() {
+    return words[Math.floor(Math.random() * words.length)];
+}
+
+function updateHangmanDrawing(wrongGuessCount) {
+    // Update the hangman drawing based on the wrongGuessCount
+
+    if (wrongGuessCount === 5) {
+        gameOver();
+    }
+}
+
+function gameOver() {
+    gameStart.innerText = 'Try again!';
+    submitButton.disabled = true;
+    // You can add more actions like displaying a message for a game over here
+}
+
+function checkWin() {
+    if (underlines === pickedWord) {
+        displaySplitWord.innerHTML = pickedWord;
+        gameStart.innerText = 'You won! Play again';
+        submitButton.disabled = true;
+    }
+}
+
 submitButton.addEventListener('click', () => {
-    const guessedLetter = document.getElementById('inputText').value.toLowerCase(); // Convert input to lowercase
+    const guessedLetter = document.getElementById('inputText').value;
+
+    underlinesArray = underlines.split('');
 
     if (pickedWord.includes(guessedLetter)) {
-        // The guessed letter is in the word
-        let underlinesArray = underlines.split('');
         for (let i = 0; i < pickedWord.length; i++) {
             if (pickedWord[i] === guessedLetter) {
                 underlinesArray[i] = guessedLetter;
@@ -149,24 +219,15 @@ submitButton.addEventListener('click', () => {
         }
         underlines = underlinesArray.join('');
         displaySplitWord.innerHTML = underlines;
-        
-        // Check if the player has guessed the entire word
-        if (underlines === pickedWord) {
-            // You win! Implement win logic here
-            gameWon();
-        }
+        checkWin(); // Check if the player has won
     } else {
-        // The guessed letter is not in the word
         wrongArray.push(guessedLetter);
         wrongChars.innerText = wrongArray.join(', ');
-        
-        // Increment wrong guess count and update hangman drawing
         wrongGuessCount++;
+        triesLeft--;
+        document.querySelector('.main__countdown--circle').innerText = `${triesLeft}`;
         updateHangmanDrawing(wrongGuessCount);
-        
-        // Check if the player has reached the maximum wrong guesses
-        if (wrongGuessCount === 6) {
-            // Game over - implement game over logic here
+        if (wrongGuessCount === 5) {
             gameOver();
         }
     }
