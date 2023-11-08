@@ -204,5 +204,4 @@ function gameOver() {
 randomIndex = Math.floor(Math.random() * words.length);
 splitWord = splitWordIntoChars(words[randomIndex]);
 
-
 */ 
