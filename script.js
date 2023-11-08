@@ -3,8 +3,21 @@ let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'
 
 //Skapa för att kunna nå randomIndex utanför alla funktioner
 let randomIndex; 
-let splitWord;
+let pickedWord;
+let wrongArray = [];
+const wrongChars = document.querySelector('.main__wrongUsedWords');
+const submitButton = document.querySelector('#submitButton');
 let displaySplitWord = document.querySelector('.main__randomWord');
+
+// Variables for hangman SVG elements
+const hangmanHead = document.getElementById('head');
+const hangmanBody = document.getElementById('body');
+const hangmanArms = document.getElementById('arms');
+const hangmanLegs = document.getElementById('legs');
+const hangmanScaffold = document.getElementById('scaffold');
+
+// Counter for wrong guesses
+let wrongGuessCount = 0;
 
 //2. Skapa initiate game knapp
 let gameStart = document.querySelector('#header__button')
@@ -26,26 +39,24 @@ function getRandomWord(){
     return words[Math.floor(Math.random() * words.length)]; 
 }
 
-let wrongArray = []
-let wrongChars = document.querySelector('.main__wrongUsedWords')
-wrongChars.innerText = wrongArray
-
 //7. If else sats inkluderar bokstaven gör en funktion som skriver ut den på submitknappen
-let submitButton = document.querySelector('#submitButton')
-submitButton.addEventListener('click', () =>{
-
-    let inputValue = document.getElementById('inputText').value;
-    
-    if (splitWord.includes(inputValue)) {
-        console.log('Letter is in the word');
-
-    } else{
-        //8. annars kasta in bostaven i en ny tom array och gör det synligt på hemsidan
-        wrongArray.push(inputValue)
-        console.log('Letter is NOT in the word');
+submitButton.addEventListener('click', () => {
+    const guessedLetter = document.getElementById('inputText').value;
+    let newWord = pickedWord.split('');
+    console.log(pickedWord);
+  
+    if (newWord.includes(guessedLetter)) {
+      console.log('Letter is in the word');
+    } else {
+      wrongArray.push(guessedLetter);
+      console.log('Letter is NOT in the word');
+      wrongChars.innerText = wrongArray.join(', '); // Display wrong letters
+  
+      // Increment wrong guess count and update hangman drawing
+      wrongGuessCount++;
+      updateHangmanDrawing(wrongGuessCount);
     }
-
-})
+  });
 //Gör chars till stora bokstäver
 //Få hjälp med att få understräck att fungera
 //hjälp med att jämföra bokstäverna i ordet med inputbokstav
@@ -55,79 +66,6 @@ submitButton.addEventListener('click', () =>{
 //10. ifall countdown hamnar på 0, kalla på diven "Game over" och visa det slumpade ordet. try again knapp
 //11. Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" och skapa en play again knapp
 
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-const words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'];
-let randomIndex;
-let splitWord;
-let wrongArray = [];
-const displaySplitWord = document.querySelector('.main__randomWord');
-const maxInput = document.getElementById('inputText');
-const wrongChars = document.querySelector('.main__wrongUsedWords');
-const submitButton = document.querySelector('#submitButton');
-
-// Variables for hangman SVG elements
-const hangmanHead = document.getElementById('head');
-const hangmanBody = document.getElementById('body');
-const hangmanArms = document.getElementById('arms');
-const hangmanLegs = document.getElementById('legs');
-const hangmanScaffold = document.getElementById('scaffold');
-
-// Counter for wrong guesses
-let wrongGuessCount = 0;
-
-function getRandomWordFromArray(wordArray) {
-  return wordArray[Math.floor(Math.random() * wordArray.length)];
-}
-
-function splitWordIntoChars(randomWord) {
-  const splitWord = randomWord.split('');
-  hideChars(splitWord);
-  return splitWord;
-}
-
-function hideChars(splitWord) {
-  splitWord.forEach((char) => {
-    const span = document.createElement('span');
-    span.textContent = '_';
-    span.style.marginRight = '10px';
-    displaySplitWord.appendChild(span);
-  });
-}
-
-maxInput.addEventListener('input', function (inputEvent) {
-  const maxChars = 1;
-  if (inputEvent.target.value.length > maxChars) {
-    inputEvent.target.value = inputEvent.target.value.substr(0, maxChars);
-  }
-});
-
-submitButton.addEventListener('click', () => {
-  const guessedLetter = document.getElementById('inputText').value;
-
-  if (splitWord.includes(guessedLetter)) {
-    console.log('Letter is in the word');
-  } else {
-    wrongArray.push(guessedLetter);
-    console.log('Letter is NOT in the word');
-    wrongChars.innerText = wrongArray.join(', '); // Display wrong letters
-
-    // Increment wrong guess count and update hangman drawing
-    wrongGuessCount++;
-    updateHangmanDrawing(wrongGuessCount);
-  }
-});
 
 function updateHangmanDrawing(wrongGuessCount) {
   // Display hangman parts one by one for each wrong guess
@@ -163,10 +101,3 @@ function gameOver() {
   maxInput.disabled = true;
   submitButton.disabled = true;
 }
-
-// Initialize the game by selecting a random word
-randomIndex = Math.floor(Math.random() * words.length);
-splitWord = splitWordIntoChars(words[randomIndex]);
-
-
-*/ 
