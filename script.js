@@ -1,4 +1,3 @@
-
 //1. Skapa array med ord
 let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond']
 
@@ -13,55 +12,19 @@ gameStart.addEventListener('click', ()=>{
 
     displaySplitWord.innerHTML = '';
 
-    randomIndex = getRandomWord(words)
-    splitWord = wordSplitter(randomIndex)
+    let pickedWord = getRandomWord()
+    let underlines = pickedWord.split('').fill('_',0).join('')
+    displaySplitWord.innerHTML = underlines
 
-    console.log(randomIndex);
+    console.log(pickedWord);
     //console.log(splitWord);
 
 });
 
 //3. slumpa ut random ord med math.random och lägg i en tom array
-function getRandomWord(randomWord){
-    const randomIndex = randomWord[Math.floor(Math.random() * randomWord.length)]; 
-    //skriv ut det nya ordet på hemsidan
-    return randomIndex
+function getRandomWord(){
+    return words[Math.floor(Math.random() * words.length)]; 
 }
-
-//lägger ordet i array splittad med 1 bokstav per index
-function wordSplitter(randomWord) {
-    let splitWord = randomWord.split('')
-
-    hideChars(splitWord);
-
-    //return splitWord;
-    console.log(splitWord);
-}
-
-function hideChars(splitWord) {
-    // forEach loop som skapar en span mellan varje index, för att få understäcken
-    splitWord.forEach((item, index) => {
-        const span = document.createElement('span');
-        span.textContent = item;
-        //Göm texten, ej understräcken
-        span.innerText = '_';
-        //span.style.textDecoration = 'underline';
-        span.style.marginRight = '10px';
-        displaySplitWord.appendChild(span);
-        console.log(span);
-});
-}
-
-
-
-//5. input fält som bara kan ha en bokstav som alternativ
-let maxInput = document.getElementById('inputText').addEventListener('input', function(inputMax){
-    let maxChars = 1;
-
-    if(inputMax.target.value.length > maxChars) {
-        inputMax.target.value = inputMax.target.value.substr(0, maxChars);
-    }
-})
 
 let wrongArray = []
 let wrongChars = document.querySelector('.main__wrongUsedWords')
@@ -91,6 +54,7 @@ submitButton.addEventListener('click', () =>{
 //9. + display image och kör en countdown på de 6 försöken
 //10. ifall countdown hamnar på 0, kalla på diven "Game over" och visa det slumpade ordet. try again knapp
 //11. Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" och skapa en play again knapp
+
 
 
 
