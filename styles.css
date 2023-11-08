@@ -150,6 +150,7 @@ header {
     height: auto;
     justify-content: space-between;
     width: 100%;
+    padding: 50px;
 }
 
 /* HANGMAN PARTS */
