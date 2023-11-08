@@ -147,7 +147,7 @@ header {
     border: solid 1px var(--dusk-8);
     border-radius: 0.5rem;
     display: flex;
-    height: 30rem;
+    height: auto;
     justify-content: space-between;
     width: 100%;
 }
