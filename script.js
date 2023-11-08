@@ -151,7 +151,7 @@ function restartGame(){
 
 /*
 document.addEventListener('DOMContentLoaded', function () {
-  const randomWords = ['apple', 'banana', 'cherry', 'date', 'elderberry']; // Add more words
+  const randomWords = ['apple', 'banana', 'cherry', 'date', 'elderberry']; 
   let currentWord = '';
   let guessedWord = [];
   let remainingTries = 5;
