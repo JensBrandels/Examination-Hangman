@@ -138,7 +138,7 @@ startButton.addEventListener('click', () => {
 });
 
 submitButton.addEventListener('click', (e) => {
-e.preventDefault(); // Prevent form submission (page refresh)
+e.preventDefault(); 
 const inputLetter = inputText.value.trim().toLowerCase();
 
     if (inputLetter.length !== 1 || !inputLetter.match(/[a-z]/)) {
@@ -163,10 +163,10 @@ inputText.value = '';
 
 if (remainingTries === 0) {
   alert(`Game Over! The word was "${currentWord}".`);
-  inputText.disabled = true; // Disable further input if the game is over.
+  inputText.disabled = true; 
 } else if (currentWord.split('').every(letter => guessedLetters.includes(letter))) {
   alert('Congratulations! You Win!');
-  inputText.disabled = true; // Disable further input if the game is won.
+  inputText.disabled = true; 
 }
 });
 
