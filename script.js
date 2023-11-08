@@ -5,6 +5,7 @@ let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'
 let randomIndex; 
 let pickedWord;
 let underlines;
+let underlinesArray;
 let wrongArray = [];
 const wrongChars = document.querySelector('.main__wrongUsedWords');
 const submitButton = document.querySelector('#submitButton');
@@ -44,18 +45,18 @@ submitButton.addEventListener('click', () => {
     const guessedLetter = document.getElementById('inputText').value;
     
     console.log(pickedWord);
-    let underlinesArray = underlines.split('')
+    underlinesArray = underlines.split('')
     
-   for (let i = 0; i < pickedWord.length; i++) {
-    if (pickedWord[i] === (guessedLetter)) {
-      console.log('Letter is in the word');
-      // Här behöver vi uppdatera underlines på index i med guessedLetter
-      
-      underlinesArray[i] = guessedLetter
-      
-      console.log(underlinesArray);
-    // Men underlines är en sträng just nu, så vi behöver göra den till en array först
-        } else {
+    if (pickedWord.includes(guessedLetter)) {
+        for (let i = 0; i < pickedWord.length; i++) {
+            if (pickedWord[i] === guessedLetter) {
+                underlinesArray[i] = guessedLetter;
+                underlines = underlinesArray.join('')
+                console.log(underlinesArray);
+                displaySplitWord.innerHTML = underlines
+            }
+        }
+    } else {
         wrongArray.push(guessedLetter);
         console.log('Letter is NOT in the word');
         wrongChars.innerText = wrongArray.join(', '); 
@@ -64,9 +65,11 @@ submitButton.addEventListener('click', () => {
         // Increment wrong guess count and update hangman drawing
         wrongGuessCount++;
         updateHangmanDrawing(wrongGuessCount);
-        }
+        
     }
 })
+
+
 //Gör chars till stora bokstäver
 //Få hjälp med att få understräck att fungera
 //hjälp med att jämföra bokstäverna i ordet med inputbokstav
