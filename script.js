@@ -2,14 +2,16 @@
 let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond']
 
 //Skapa för att kunna nå randomIndex utanför alla funktioner
-let randomIndex; 
 let pickedWord;
 let underlines;
 let underlinesArray;
+let guessedLetter;
 let wrongArray = [];
-const wrongChars = document.querySelector('.main__wrongUsedWords');
-const submitButton = document.querySelector('#submitButton');
+let wrongChars = document.querySelector('.main__wrongUsedWords');
+let submitButton = document.querySelector('#submitButton');
 let displaySplitWord = document.querySelector('.main__randomWord');
+let win = document.querySelector('.header__youWin');
+let loose = document.querySelector('.header__youLoose');
 
 // Variables for hangman SVG elements
 const hangmanHead = document.getElementById('head');
@@ -25,12 +27,13 @@ let triesLeft = 5
 //2. Skapa initiate game knapp
 let gameStart = document.querySelector('#header__button')
 gameStart.addEventListener('click', ()=>{
-
-    restartGame()
-
+    // kalla på restartGame funktionen för att nolställa bilden och triesLeft
+    restartGame();
+    // byter ut texten på button
     gameStart.innerText = 'Restart'
-    displaySplitWord.innerHTML = '';
 
+    // understräcken
+    displaySplitWord.innerHTML = '';
     pickedWord = getRandomWord()
     underlines = pickedWord.split('').fill('_',0).join('')
     displaySplitWord.innerHTML = underlines
@@ -45,36 +48,43 @@ function getRandomWord(){
 }
 
 //7. If else sats inkluderar bokstaven gör en funktion som skriver ut den på submitknappen
-submitButton.addEventListener('click', () => {
-    const guessedLetter = document.getElementById('inputText').value;
+submitButton.addEventListener('click', 'keypress', () => {
+    guessedLetter = document.getElementById('inputText').value;
+    guessedLetter.value = '';//ändra sen
+
+    //koppla enter till submitbutton 
     
-    console.log(pickedWord);
-    underlinesArray = underlines.split('')
-    
+    underlinesArray = underlines.split('');
+
+    //Ej kunna submita samma bokstav 2 ggr
+    if (wrongArray.includes(guessedLetter)) {
+      return
+    }
+
     if (pickedWord.includes(guessedLetter)) {
         for (let i = 0; i < pickedWord.length; i++) {
             if (pickedWord[i] === guessedLetter) {
                 underlinesArray[i] = guessedLetter;
                 underlines = underlinesArray.join('')
-                console.log(underlinesArray);
+                console.log(underlinesArray);//logga varje bokstav för att se vart de hamnar i arrayen
                 displaySplitWord.innerHTML = underlines
+                checkWin();
             }
         }
     } else {
+        // lägg in fel i wrongarray
         wrongArray.push(guessedLetter);
         console.log('Letter is NOT in the word');
         wrongChars.innerText = wrongArray.join(', '); 
-        // lägg in fel i wrongarray för att visa på hemsidan
     
         // uppdaterar fel i en counter och visar hangman bilderna på hemsidan via funktionen update hangmanDrawing
         wrongGuessCount++;
         triesLeft--
         document.getElementsByClassName('main__countdown--circle')[0].innerHTML = `${triesLeft}`
         updateHangmanDrawing(wrongGuessCount);
-        
     }
 })
-
+//9. display image funktion
 function updateHangmanDrawing(wrongGuessCount) {
   // Display hangman parts one by one for each wrong guess
   switch (wrongGuessCount) {
@@ -100,25 +110,65 @@ function updateHangmanDrawing(wrongGuessCount) {
   }
 }
 
+function checkWin() {
+  if (underlines === pickedWord) {
+      win.style.visibility = 'visible';
+      displaySplitWord.innerHTML = pickedWord;
+      submitButton.disabled = true;
+  }
+}
+
 function gameOver() {
-  // Implement game over logic here, e.g., showing a message and disabling further input
+  // gameOver funktion som ska visa meddelandet (Game Over)
+  loose.style.visibility = 'visible';
   console.log('Game over');
-  // You can add more actions like disabling input and displaying a message to indicate the game is over.
+
+  // Ändrar texten på button till 'Try again'
   gameStart.innerText = 'Try again!'
   submitButton.disabled = true;
 }
 
+//10. Kalla på diven "Game over" och visa det slumpade ordet. try again knapp
 function restartGame(){
-    wrongGuessCount = 0;
-    triesLeft.innerHTML = '5'
+  // återställ bilden till gömd
+  hangmanScaffold.style.visibility = 'hidden';
+  hangmanHead.style.visibility = 'hidden';
+  hangmanBody.style.visibility = 'hidden';
+  hangmanArms.style.visibility = 'hidden';
+  hangmanLegs.style.visibility = 'hidden';
+
+  pickedWord = null;
+  underlines = null;
+  underlinesArray = null;
+  displaySplitWord.innerHTML = '';
+
+  // återställ guessCount
+  wrongGuessCount = 0;
+
+  // återställ triesLeft till 5
+  triesLeft = 5;
+  document.getElementsByClassName('main__countdown--circle')[0].innerHTML = `${triesLeft}`;
+
+  // återställ wrongArray
+  wrongArray = [];
+  wrongChars.innerText = '';
+
+  // göm checkWin + loose
+  win.style.visibility = 'hidden';
+  loose.style.visibility = 'hidden';
+
+  // återställ submit knappen
+  submitButton.disabled = false;
 }
+
+
+
+//Återställa input fältet vid varje submit
 //Gör chars till stora bokstäver
-//Få hjälp med att få understräck att fungera
-//hjälp med att jämföra bokstäverna i ordet med inputbokstav
+// Enter på submit knappen
+// Visa det slumpade ordet i (you loose)
 
 
-//9. + display image och kör en countdown på de 6 försöken
-//10. ifall countdown hamnar på 0, kalla på diven "Game over" och visa det slumpade ordet. try again knapp
 //11. Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" och skapa en play again knapp
 
 
@@ -127,105 +177,87 @@ function restartGame(){
 
 
 /*
+document.addEventListener('DOMContentLoaded', function () {
+  const randomWords = ['apple', 'banana', 'cherry', 'date', 'elderberry']; // Add more words
+  let currentWord = '';
+  let guessedWord = [];
+  let remainingTries = 5;
 
-let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'];
+  const headerButton = document.getElementById('header__button');
+  const submitButton = document.getElementById('submitButton');
+  const inputText = document.getElementById('inputText');
+  const hangmanFigureParts = document.querySelectorAll('#scaffold, #legs, #arms, #body, #head');
+  const countdownCircle = document.querySelector('.main__countdown--circle');
+  const wrongUsedWords = document.querySelector('.main__wrongUsedWords');
+  const youWinMessage = document.querySelector('.header__youWin');
+  const youLoseMessage = document.querySelector('.header__youLoose');
 
-let randomIndex;
-let pickedWord;
-let underlines;
-let underlinesArray;
-let wrongArray = [];
-const wrongChars = document.querySelector('.main__wrongUsedWords');
-const submitButton = document.querySelector('#submitButton');
-let displaySplitWord = document.querySelector('.main__randomWord');
+  function initializeGame() {
+    // Reset game variables
+    currentWord = getRandomWord();
+    guessedWord = Array(currentWord.length).fill('_');
+    remainingTries = 5;
+    updateHangman(remainingTries);
+    updateWordDisplay();
+    countdownCircle.textContent = remainingTries;
+    wrongUsedWords.textContent = '';
+    youWinMessage.style.display = 'none';
+    youLoseMessage.style.display = 'none';
+  }
 
-const hangmanHead = document.getElementById('head');
-const hangmanBody = document.getElementById('body');
-const hangmanArms = document.getElementById('arms');
-const hangmanLegs = document.getElementById('legs');
-const hangmanScaffold = document.getElementById('scaffold');
+  function getRandomWord() {
+    return randomWords[Math.floor(Math.random() * randomWords.length)];
+  }
 
-let wrongGuessCount = 0;
-let triesLeft = 5;
+  function updateWordDisplay() {
+    const wordDisplay = guessedWord.join(' ');
+    document.querySelector('.main__randomWord').textContent = wordDisplay;
+  }
 
-function restartGame() {
-    wrongGuessCount = 0;
-    triesLeft = 5;
-    underlines = '';
-    pickedWord = '';
-    underlinesArray = [];
-    wrongArray = [];
-    wrongChars.innerText = '';
-    document.querySelector('.main__countdown--circle').innerText = `${triesLeft}`;
-    hangmanScaffold.style.visibility = 'hidden';
-    hangmanHead.style.visibility = 'hidden';
-    hangmanBody.style.visibility = 'hidden';
-    hangmanArms.style.visibility = 'hidden';
-    hangmanLegs.style.visibility = 'hidden';
-    displaySplitWord.innerHTML = '';
-}
+  function updateHangman(tries) {
+    hangmanFigureParts.forEach((part, index) => {
+      if (index < 5 - tries) {
+        part.style.display = 'none';
+      } else {
+        part.style.display = 'block';
+      }
+    });
+  }
 
-let gameStart = document.querySelector('#header__button');
-gameStart.addEventListener('click', () => {
-    restartGame();
-    gameStart.innerText = 'Restart';
+  function checkGuess() {
+    const guessedChar = inputText.value.toLowerCase();
+    inputText.value = '';
 
-    pickedWord = getRandomWord();
-    underlines = pickedWord.split('').fill('_', 0).join('');
-    displaySplitWord.innerHTML = underlines;
-});
-
-function getRandomWord() {
-    return words[Math.floor(Math.random() * words.length)];
-}
-
-function updateHangmanDrawing(wrongGuessCount) {
-    // Update the hangman drawing based on the wrongGuessCount
-
-    if (wrongGuessCount === 5) {
-        gameOver();
-    }
-}
-
-function gameOver() {
-    gameStart.innerText = 'Try again!';
-    submitButton.disabled = true;
-    // You can add more actions like displaying a message for a game over here
-}
-
-function checkWin() {
-    if (underlines === pickedWord) {
-        displaySplitWord.innerHTML = pickedWord;
-        gameStart.innerText = 'You won! Play again';
-        submitButton.disabled = true;
-    }
-}
-
-submitButton.addEventListener('click', () => {
-    const guessedLetter = document.getElementById('inputText').value;
-
-    underlinesArray = underlines.split('');
-
-    if (pickedWord.includes(guessedLetter)) {
-        for (let i = 0; i < pickedWord.length; i++) {
-            if (pickedWord[i] === guessedLetter) {
-                underlinesArray[i] = guessedLetter;
-            }
+    if (currentWord.includes(guessedChar)) {
+      for (let i = 0; i < currentWord.length; i++) {
+        if (currentWord[i] === guessedChar) {
+          guessedWord[i] = guessedChar;
         }
-        underlines = underlinesArray.join('');
-        displaySplitWord.innerHTML = underlines;
-        checkWin(); // Check if the player has won
+      }
+      updateWordDisplay();
+
+      if (!guessedWord.includes('_')) {
+        // All letters guessed, player wins
+        youWinMessage.style.display = 'block';
+      }
     } else {
-        wrongArray.push(guessedLetter);
-        wrongChars.innerText = wrongArray.join(', ');
-        wrongGuessCount++;
-        triesLeft--;
-        document.querySelector('.main__countdown--circle').innerText = `${triesLeft}`;
-        updateHangmanDrawing(wrongGuessCount);
-        if (wrongGuessCount === 5) {
-            gameOver();
-        }
+      remainingTries--;
+      updateHangman(remainingTries);
+      countdownCircle.textContent = remainingTries;
+
+      if (remainingTries === 0) {
+        // No more tries left, player loses
+        youLoseMessage.style.display = 'block';
+      }
+
+      wrongUsedWords.textContent += `${guessedChar} `;
     }
+  }
+
+  headerButton.addEventListener('click', initializeGame);
+  submitButton.addEventListener('click', checkGuess);
+
+  initializeGame();
 });
 
 
