@@ -1,6 +1,5 @@
 /* GENERAL SETTINGS */
 :root {
-    /* Colors */
     --dusk-1: hsl(0, 0%, 90%);
     --dusk-2: hsl(0, 0%, 80%);
     --dusk-3: hsl(0, 0%, 70%);
@@ -30,7 +29,7 @@
 /* TYPOGRAPHY */
 body {
     background-color: #fff;
-    color-scheme: light dark;
+    color: var(--dusk-8);
     font-family: sans-serif;
     padding: 50px;
 }
@@ -78,6 +77,7 @@ header {
     color: var(--dusk-1);
     font-size: var(--font-size-p);
     padding: 10px 20px;
+    cursor: pointer;
 }
 
 #header__button:hover {
@@ -89,7 +89,7 @@ header {
 .image {
     background: url('<path-to-image>') lightgray 50% / cover no-repeat;
     border: 1px solid var(--dusk-8);
-    border-radius: 0.5;
+    border-radius: 0.5rem;
     flex-shrink: 0;
     height: 34.25rem;
     width: 38.375rem;
@@ -102,13 +102,13 @@ header {
     background-color: var(--dusk-1);
     border: solid 1px var(--dusk-8);
     border-radius: 1rem;
-
     padding: 2rem;
     max-width: auto;
 }
 
 /* YOU WIN AND YOU LOSE */
-.header__youLoose {
+.header__youLoose,
+.header__youWin {
     border: 1px solid var(--dusk-8);
     background-color: var(--dusk-1);
     color: var(--dusk-8);
@@ -119,10 +119,6 @@ header {
 }
 
 .header__youWin {
-    border: 1px solid var(--dusk-8);
-    background-color: var(--dusk-1);
-    color: var(--dusk-8);
-    visibility: hidden;
     height: 7rem;
 }
 
@@ -142,7 +138,7 @@ header {
     padding: 4rem;
     margin-top: 20px;
     background-color: var(--dusk-4);
-    gap: 20px; 
+    gap: 20px;
     border-radius: 0.5rem;
     width: 100%;
 }
@@ -156,19 +152,8 @@ header {
     width: 100%;
 }
 
-#scaffold{
-    visibility: hidden;
-}
-#head{
-    visibility: hidden;
-}
-#body{
-    visibility: hidden;
-}
-#legs{
-    visibility: hidden;
-}
-#arms{
+/* HANGMAN PARTS */
+#scaffold, #head, #body, #legs, #arms {
     visibility: hidden;
 }
 
@@ -197,6 +182,7 @@ header {
     font-size: var(--font-size-p);
     padding: 0.5rem 1.5rem;
     transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
 }
 
 #submitButton:hover {
@@ -239,5 +225,3 @@ header {
     font-size: var(--font-size-p);
     font-weight: 700;
 }
-
-
