@@ -152,71 +152,6 @@ function restartGame(){
 
 /*
 
-let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'];
-
-let randomIndex;
-let pickedWord;
-let underlines;
-let underlinesArray;
-let wrongArray = [];
-const wrongChars = document.querySelector('.main__wrongUsedWords');
-const submitButton = document.querySelector('#submitButton');
-let displaySplitWord = document.querySelector('.main__randomWord');
-
-const hangmanHead = document.getElementById('head');
-const hangmanBody = document.getElementById('body');
-const hangmanArms = document.getElementById('arms');
-const hangmanLegs = document.getElementById('legs');
-const hangmanScaffold = document.getElementById('scaffold');
-
-let wrongGuessCount = 0;
-let triesLeft = 5;
-
-function restartGame() {
-    wrongGuessCount = 0;
-    triesLeft = 5;
-    underlines = '';
-    pickedWord = '';
-    underlinesArray = [];
-    wrongArray = [];
-    wrongChars.innerText = '';
-    document.querySelector('.main__countdown--circle').innerText = `${triesLeft}`;
-    hangmanScaffold.style.visibility = 'hidden';
-    hangmanHead.style.visibility = 'hidden';
-    hangmanBody.style.visibility = 'hidden';
-    hangmanArms.style.visibility = 'hidden';
-    hangmanLegs.style.visibility = 'hidden';
-    displaySplitWord.innerHTML = '';
-}
-
-let gameStart = document.querySelector('#header__button');
-gameStart.addEventListener('click', () => {
-    restartGame();
-    gameStart.innerText = 'Restart';
-
-    pickedWord = getRandomWord();
-    underlines = pickedWord.split('').fill('_', 0).join('');
-    displaySplitWord.innerHTML = underlines;
-});
-
-function getRandomWord() {
-    return words[Math.floor(Math.random() * words.length)];
-}
-
-function updateHangmanDrawing(wrongGuessCount) {
-    // Update the hangman drawing based on the wrongGuessCount
-
-    if (wrongGuessCount === 5) {
-        gameOver();
-    }
-}
-
-function gameOver() {
-    gameStart.innerText = 'Try again!';
-    submitButton.disabled = true;
-    // You can add more actions like displaying a message for a game over here
-}
-
 function checkWin() {
     if (underlines === pickedWord) {
         displaySplitWord.innerHTML = pickedWord;
@@ -226,7 +161,14 @@ function checkWin() {
 }
 
 submitButton.addEventListener('click', () => {
-    const guessedLetter = document.getElementById('inputText').value;
+    if (gameStart.disabled) return; 
+    const guessedLetter = document.getElementById('inputText').value.toLowerCase(); 
+
+    if (wrongArray.includes(guessedLetter)) {
+        // Prevent guessing the same letter again
+        alert('You already guessed this letter.');
+        return;
+    }
 
     underlinesArray = underlines.split('');
 
@@ -251,6 +193,5 @@ submitButton.addEventListener('click', () => {
         }
     }
 });
-
 
 */ 
