@@ -160,8 +160,8 @@ function checkWin() {
 }
 
 submitButton.addEventListener('click', () => {
-    if (gameStart.disabled) return; // Prevent guessing after the game is over
-    const guessedLetter = document.getElementById('inputText').value.toLowerCase(); // Convert to lowercase
+    if (gameStart.disabled) return; 
+    const guessedLetter = document.getElementById('inputText').value.toLowerCase(); 
 
     if (wrongArray.includes(guessedLetter)) {
         // Prevent guessing the same letter again
