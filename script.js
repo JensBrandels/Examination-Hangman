@@ -115,6 +115,8 @@ function restartGame(){
   hangmanBody.style.visibility = 'hidden';
   hangmanArms.style.visibility = 'hidden';
   hangmanLegs.style.visibility = 'hidden';
+  // återställ guessCount
+  wrongGuessCount = 0;
 
   // återställ triesLeft till 5
   triesLeft = 5;
@@ -122,7 +124,7 @@ function restartGame(){
 
   // återställ wrongArray
   wrongArray = [];
-  wrongArray = document.querySelector('.main__wrongUsedWords');
+  wrongChars.innerText = '';
 }
   /*  document.getElementsByClassName('main__countdown--circle').innerText = '5';
   pickedWord = null;
@@ -130,7 +132,6 @@ function restartGame(){
   underlinesArray = null;
   wrongArray = [];
   wrongChars.innerText = '';
-  wrongGuessCount = 0;
   displaySplitWord.innerHTML = '';
   wrongGuessCount.innerText = 0;
 
