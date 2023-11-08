@@ -18,13 +18,25 @@ const hangmanArms = document.getElementById('arms');
 const hangmanLegs = document.getElementById('legs');
 const hangmanScaffold = document.getElementById('scaffold');
 
-// Counter for wrong guesses
+// Counters
 let wrongGuessCount = 0;
+// let counter = 5
+
+// let triesLeft = document.querySelector('.main__countdown--circle')
+// triesLeft.innerText = `${counter}`
+
+let triesLeft = 5
+
+
+
 
 //2. Skapa initiate game knapp
 let gameStart = document.querySelector('#header__button')
 gameStart.addEventListener('click', ()=>{
 
+    restartGame()
+
+    gameStart.innerText = 'Restart'
     displaySplitWord.innerHTML = '';
 
     pickedWord = getRandomWord()
@@ -60,25 +72,16 @@ submitButton.addEventListener('click', () => {
         wrongArray.push(guessedLetter);
         console.log('Letter is NOT in the word');
         wrongChars.innerText = wrongArray.join(', '); 
-        // Display wrong letters
+        // lägg in fel i wrongarray för att visa på hemsidan
     
-        // Increment wrong guess count and update hangman drawing
+        // uppdaterar fel i en counter och visar hangman bilderna på hemsidan via funktionen update hangmanDrawing
         wrongGuessCount++;
+        triesLeft--
+        document.getElementsByClassName('main__countdown--circle')[0].innerHTML = `${triesLeft}`
         updateHangmanDrawing(wrongGuessCount);
         
     }
 })
-
-
-//Gör chars till stora bokstäver
-//Få hjälp med att få understräck att fungera
-//hjälp med att jämföra bokstäverna i ordet med inputbokstav
-
-
-//9. + display image och kör en countdown på de 6 försöken
-//10. ifall countdown hamnar på 0, kalla på diven "Game over" och visa det slumpade ordet. try again knapp
-//11. Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" och skapa en play again knapp
-
 
 function updateHangmanDrawing(wrongGuessCount) {
   // Display hangman parts one by one for each wrong guess
@@ -97,8 +100,6 @@ function updateHangmanDrawing(wrongGuessCount) {
       break;
     case 5:
       hangmanLegs.style.visibility = 'visible';
-      break;
-    case 6:
       // Game over - implement game over logic here
       gameOver();
       break;
@@ -111,9 +112,24 @@ function gameOver() {
   // Implement game over logic here, e.g., showing a message and disabling further input
   console.log('Game over');
   // You can add more actions like disabling input and displaying a message to indicate the game is over.
-  maxInput.disabled = true;
+  gameStart.innerText = 'Try again!'
   submitButton.disabled = true;
 }
+
+function restartGame(){
+    wrongGuessCount.innerText = 0;
+    triesLeft.innerText = 5
+}
+//Gör chars till stora bokstäver
+//Få hjälp med att få understräck att fungera
+//hjälp med att jämföra bokstäverna i ordet med inputbokstav
+
+
+//9. + display image och kör en countdown på de 6 försöken
+//10. ifall countdown hamnar på 0, kalla på diven "Game over" och visa det slumpade ordet. try again knapp
+//11. Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" och skapa en play again knapp
+
+
 
 
 

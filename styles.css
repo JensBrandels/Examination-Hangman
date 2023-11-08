@@ -156,6 +156,22 @@ header {
     width: 100%;
 }
 
+#scaffold{
+    visibility: hidden;
+}
+#head{
+    visibility: hidden;
+}
+#body{
+    visibility: hidden;
+}
+#legs{
+    visibility: hidden;
+}
+#arms{
+    visibility: hidden;
+}
+
 .main__randomWord {
     font-size: var(--font-size-h1);
     font-weight: 600;
