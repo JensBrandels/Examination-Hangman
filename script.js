@@ -172,6 +172,7 @@ function restartGame(){
 
 // Define variables
 let pickedWord;
+let initialPickedWord; // Store the picked word at the beginning of the game
 let underlines;
 let underlinesArray;
 let guessedLetter;
@@ -195,7 +196,8 @@ let triesLeft = 5;
 
 // Initialize the game
 function initializeGame() {
-  pickedWord = getRandomWord();
+  initialPickedWord = getRandomWord(); // Store the picked word at the beginning
+  pickedWord = initialPickedWord; // Assign it to pickedWord
   underlines = pickedWord.split('').fill('_', 0).join('');
   displaySplitWord.textContent = underlines;
 
@@ -285,14 +287,15 @@ function checkWin() {
 // Handle game over
 function gameOver() {
   loose.style.visibility = 'visible';
+  displaySplitWord.textContent = initialPickedWord; // Display the initial picked word
   gameStart.innerText = 'Try again!';
   submitButton.disabled = true;
+  loose.textContent = `You lose! The word was: ${initialPickedWord}`;
 }
 
 // Initialize the game on page load
 window.addEventListener('load', () => {
   initializeGame();
 });
-
 
 */ 
