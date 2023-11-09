@@ -134,7 +134,8 @@ function updateHangmanDrawing(wrongGuessCount) {
 //Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" 
 function checkWin() {
   if (underlines === randomWord) {
-      win.style.visibility = 'visible';
+      win.classList.remove('header__winHidden');
+      console.log(win);
       displayGuessedLetter.innerHTML = randomWord;
       submitButton.disabled = true;
   }
@@ -142,7 +143,8 @@ function checkWin() {
 
 function gameOver() {
   //gameOver funktion som ska visa meddelandet (Game Over)
-  loose.style.visibility = 'visible';
+  loose.classList.remove('header__looseHidden');
+  // console.log(loose);
   //Visa det slumpade ordet i (you loose)
   document.getElementsByClassName('header__youLooseVisible')[0].innerHTML = `The word is <br> ${randomWord}`
   //Ändrar texten på button till 'Try again'
@@ -177,8 +179,8 @@ function restartGame(){
   wrongLetter.innerText = '';
 
   //göm checkWin + loose
-  win.style.visibility = 'hidden';
-  loose.style.visibility = 'hidden';
+  loose.classList.add('header__looseHidden');
+  win.classList.add('header__winHidden');
 
   //återställ submit knappen
   submitButton.disabled = false;
