@@ -180,7 +180,6 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-// Define the rest of your code here...
 let pickedWord;
 let initialPickedWord;
 let underlines;
