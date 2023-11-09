@@ -68,6 +68,7 @@ p {
 header {
     align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin: 20px;
 }
@@ -117,6 +118,7 @@ header {
     border-radius: 0.5rem; 
     margin: 10px; 
     border: 1px solid var(--dusk-8);
+    visibility: hidden;
 }
 
 .header__youLoose {
@@ -127,6 +129,7 @@ header {
     border-radius: 0.5rem; 
     margin: 10px; 
     border: 1px solid var(--dusk-8);
+    visibility: hidden;
 }
 
 /* MAIN CONTAINER */
