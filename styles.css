@@ -8,9 +8,9 @@
     --dusk-6: hsl(0, 0%, 40%);
     --dusk-7: hsl(0, 0%, 30%);
     --dusk-8: hsl(0, 0%, 20%);
+    --dusk-9: rgb(120, 177, 139);
     --enviro: hsl(120, 100%, 20%);
-    --fire: hsl(0, 100%, 50%);
-
+    --fire: hsl(0, 100%, 67%);
 
     --font-size-h1: 2rem;
     --font-size-h2: 1.5rem;
@@ -30,10 +30,9 @@
 
 /* TYPOGRAPHY */
 body {
-    background-color: #fff;
+    background-color: var(--dusk-1);
     color: var(--dusk-8);
     font-family: sans-serif;
-    padding: 50px;
 }
 
 h1 {
@@ -81,6 +80,9 @@ header {
     font-size: var(--font-size-p);
     padding: 10px 20px;
     cursor: pointer;
+    width: 10rem;
+    margin: 0 auto;
+    margin-top: 2rem;
 }
 
 #header__button:hover {
@@ -102,11 +104,9 @@ header {
 .body__container {
     display: flex;
     flex-direction: column;
-    background-color: var(--dusk-1);
-    border: solid 1px var(--dusk-8);
-    border-radius: 1rem;
-    padding: 2rem;
-    max-width: auto;
+    background-color: var(--dusk-9);
+    margin: 0 auto;
+    max-width: 1000px;
 }
 
 /* YOU WIN AND YOU LOSE */
@@ -147,6 +147,7 @@ header {
     flex-direction: column;
     margin: 0 auto;
     width: 100%;
+    background-color: pink;
 }
 
 .main--container {
@@ -162,12 +163,9 @@ header {
 }
 
 .main__hangMan {
-    border: solid 1px var(--dusk-8);
-    border-radius: 0.5rem;
     display: flex;
     height: auto;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: center;
     padding: 50px;
 }
 
