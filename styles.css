@@ -121,6 +121,10 @@ header {
     visibility: hidden;
 }
 
+.header__youWin h2{
+    color: #fff;
+}
+
 .header__youLoose {
     text-align: center; 
     background-color: var(--fire); 
