@@ -170,6 +170,17 @@ function restartGame(){
 
 /*
 
+// Add a keydown event listener to capture keyboard input
+document.addEventListener('keydown', (event) => {
+  // Check if the key pressed is a valid letter (A-Z or a-z)
+  const keyPressed = event.key.toLowerCase();
+  if (/^[a-z]$/.test(keyPressed)) {
+    // Handle the guessed letter
+    handleGuess(keyPressed);
+  }
+});
+
+// Define the rest of your code here...
 let pickedWord;
 let initialPickedWord;
 let underlines;
@@ -218,6 +229,12 @@ function getRandomWord() {
   let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'];
   return words[Math.floor(Math.random() * words.length)];
 }
+
+submitButton.addEventListener('click', () => {
+  guessedLetter = document.getElementById('inputText').value;
+  document.getElementById('inputText').value = '';
+  handleGuess(guessedLetter);
+});
 
 submitButton.addEventListener('click', () => {
   guessedLetter = document.getElementById('inputText').value;
