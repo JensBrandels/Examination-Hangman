@@ -170,9 +170,8 @@ function restartGame(){
 
 /*
 
-// Define variables
 let pickedWord;
-let initialPickedWord; // Store the picked word at the beginning of the game
+let initialPickedWord;
 let underlines;
 let underlinesArray;
 let guessedLetter;
@@ -181,7 +180,7 @@ let wrongChars = document.querySelector('.main__wrongUsedWords');
 let submitButton = document.querySelector('#submitButton');
 let displaySplitWord = document.querySelector('.main__randomWord');
 let win = document.querySelector('.header__youWin');
-let loose = document.querySelector('.header__youLoose');
+let lose = document.querySelector('.header__youLose');
 let hangmanParts = {
   scaffold: document.getElementById('scaffold'),
   head: document.getElementById('head'),
@@ -189,60 +188,44 @@ let hangmanParts = {
   arms: document.getElementById('arms'),
   legs: document.getElementById('legs'),
 };
-
-// Counters
 let wrongGuessCount = 0;
 let triesLeft = 5;
 
-// Initialize the game
 function initializeGame() {
-  initialPickedWord = getRandomWord(); // Store the picked word at the beginning
-  pickedWord = initialPickedWord; // Assign it to pickedWord
+  initialPickedWord = getRandomWord();
+  pickedWord = initialPickedWord;
   underlines = pickedWord.split('').fill('_', 0).join('');
   displaySplitWord.textContent = underlines;
-
-  // Reset hangman parts
   for (const part in hangmanParts) {
     hangmanParts[part].style.visibility = 'hidden';
   }
-
-  // Reset game messages
   win.style.visibility = 'hidden';
-  loose.style.visibility = 'hidden';
-
-  // Reset wrong guesses and tries left
+  lose.style.visibility = 'hidden';
   wrongArray = [];
   wrongChars.textContent = '';
   triesLeft = 5;
   document.querySelector('.main__countdown--circle').textContent = `${triesLeft}`;
-
   submitButton.disabled = false;
 }
 
-// Start or restart the game
 let gameStart = document.querySelector('#header__button');
 gameStart.addEventListener('click', () => {
   initializeGame();
   gameStart.innerText = 'Restart';
 });
 
-// Get a random word from the array
 function getRandomWord() {
   let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond'];
   return words[Math.floor(Math.random() * words.length)];
 }
 
-// Handle user input
 submitButton.addEventListener('click', () => {
   guessedLetter = document.getElementById('inputText').value;
   document.getElementById('inputText').value = '';
-
   if (wrongArray.includes(guessedLetter)) {
     return;
   }
-
   underlinesArray = underlines.split('');
-
   if (pickedWord.includes(guessedLetter)) {
     for (let i = 0; i < pickedWord.length; i++) {
       if (pickedWord[i] === guessedLetter) {
@@ -255,7 +238,6 @@ submitButton.addEventListener('click', () => {
   } else {
     wrongArray.push(guessedLetter);
     wrongChars.textContent = wrongArray.join(', ');
-
     wrongGuessCount++;
     triesLeft--;
     document.querySelector('.main__countdown--circle').textContent = `${triesLeft}`;
@@ -263,19 +245,16 @@ submitButton.addEventListener('click', () => {
   }
 });
 
-// Update Hangman drawing
 function updateHangmanDrawing(wrongGuessCount) {
   const parts = Object.keys(hangmanParts);
   if (wrongGuessCount <= parts.length) {
     hangmanParts[parts[wrongGuessCount - 1]].style.visibility = 'visible';
   }
-
   if (wrongGuessCount === parts.length) {
     gameOver();
   }
 }
 
-// Check if the player has won
 function checkWin() {
   if (underlines === pickedWord) {
     win.style.visibility = 'visible';
@@ -284,16 +263,14 @@ function checkWin() {
   }
 }
 
-// Handle game over
 function gameOver() {
-  loose.style.visibility = 'visible';
-  displaySplitWord.textContent = initialPickedWord; // Display the initial picked word
+  lose.style.visibility = 'visible';
+  displaySplitWord.textContent = initialPickedWord;
   gameStart.innerText = 'Try again!';
   submitButton.disabled = true;
-  loose.textContent = `You lose! The word was: ${initialPickedWord}`;
+  lose.textContent = `You lose! The word was: ${initialPickedWord}`;
 }
 
-// Initialize the game on page load
 window.addEventListener('load', () => {
   initializeGame();
 });
