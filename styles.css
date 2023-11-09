@@ -28,13 +28,14 @@
     padding: 0;
 }
 
-/* TYPOGRAPHY */
 body {
     background-color: #fff;
     color: var(--dusk-8);
     font-family: sans-serif;
     padding: 50px;
 }
+
+/* TYPOGRAPHY */
 
 h1 {
     font-size: var(--font-size-h1);
@@ -80,6 +81,7 @@ header {
     color: var(--dusk-1);
     font-size: var(--font-size-p);
     padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s;
     cursor: pointer;
 }
 
