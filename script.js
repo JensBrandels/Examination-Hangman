@@ -2,7 +2,7 @@
 let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond']
 
 //Skapa för att kunna nå randomIndex utanför alla funktioner
-let pickedWord;
+let pickedWord
 let underlines;
 let underlinesArray;
 let guessedLetter;
@@ -12,7 +12,7 @@ let submitButton = document.querySelector('#submitButton');
 let displaySplitWord = document.querySelector('.main__randomWord');
 let win = document.querySelector('.header__youWin');
 let loose = document.querySelector('.header__youLoose');
-
+// let showWordOnFail = document.getElementsByClassName('header__youLooseVisible')
 // Variables for hangman SVG elements
 const hangmanHead = document.getElementById('head');
 const hangmanBody = document.getElementById('body');
@@ -46,15 +46,21 @@ gameStart.addEventListener('click', ()=>{
 function getRandomWord(){
     return words[Math.floor(Math.random() * words.length)]; 
 }
+//koppla enter till submitknappen
+document.getElementById('inputText').addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    document.getElementById('submitButton').click(); // Triggar en 'click'-händelse på submit-knappen
+  }
+});
 
 //7. If else sats inkluderar bokstaven gör en funktion som skriver ut den på submitknappen
 submitButton.addEventListener('click', () => {
     guessedLetter = document.getElementById('inputText').value;
-    guessedLetter.value = '';//ändra sen
 
-    //koppla enter till submitbutton 
-    
     underlinesArray = underlines.split('');
+
+    //Återställa input fältet vid varje submit
+    document.getElementById('inputText').value = '';
 
     //Ej kunna submita samma bokstav 2 ggr
     if (wrongArray.includes(guessedLetter)) {
@@ -84,6 +90,9 @@ submitButton.addEventListener('click', () => {
         updateHangmanDrawing(wrongGuessCount);
     }
 })
+
+
+
 //9. display image funktion
 function updateHangmanDrawing(wrongGuessCount) {
   // Display hangman parts one by one for each wrong guess
@@ -121,8 +130,8 @@ function checkWin() {
 function gameOver() {
   // gameOver funktion som ska visa meddelandet (Game Over)
   loose.style.visibility = 'visible';
-  console.log('Game over');
-
+  // Visa det slumpade ordet i (you loose)
+  document.getElementsByClassName('header__youLooseVisible')[0].innerHTML = `The word is <br> ${pickedWord}`
   // Ändrar texten på button till 'Try again'
   gameStart.innerText = 'Try again!'
   submitButton.disabled = true;
@@ -161,9 +170,9 @@ function restartGame(){
   submitButton.disabled = false;
 }
 
-//Återställa input fältet vid varje submit
-// Enter på submit knappen
-// Visa det slumpade ordet i (you loose)
+
+
+
 
 
 

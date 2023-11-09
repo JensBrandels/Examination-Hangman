@@ -125,11 +125,16 @@ header {
     text-align: center; 
     background-color: var(--fire); 
     color: #fff;
-    padding: 10px; 
+    padding: 1rem 2rem; 
     border-radius: 0.5rem; 
     margin: 10px; 
     border: 1px solid var(--dusk-8);
     visibility: hidden;
+}
+
+.header__youLoose h2:nth-child(1){
+    padding-bottom: 1rem;
+    font-size: 2rem;
 }
 
 /* MAIN CONTAINER */
