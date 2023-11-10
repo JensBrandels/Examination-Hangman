@@ -1,3 +1,5 @@
+Project created by Marcus Widén, Sandra Stoltz and Jens Brandels
+
 //1. Skapa initiate game knapp
 //2. Skapa array med ord
 //3. slumpa ut random ord med math.random och lägg i en tom array
