@@ -8,9 +8,11 @@
     --dusk-6: hsl(0, 0%, 40%);
     --dusk-7: hsl(0, 0%, 30%);
     --dusk-8: hsl(0, 0%, 20%);
-    --dusk-9: rgb(120, 177, 139);
-    --enviro: hsl(120, 100%, 20%);
+    --enviro1: rgb(120, 177, 139);
+    --enviro2: hsl(120, 100%, 20%);
+    --enviro3: hsl(120, 50%, 50%);
     --fire: hsl(0, 100%, 67%);
+    
 
     --font-size-h1: 2rem;
     --font-size-h2: 1.5rem;
