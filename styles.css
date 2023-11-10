@@ -65,7 +65,7 @@ header {
 }
 
 #header__button {
-    background-color: var(--enviro-2);
+    background-color: var(--enviro2);
     border: 1px solid var(--dusk-6);
     border-radius: 0.5rem;
     color: var(--dusk-1);
@@ -97,7 +97,7 @@ header {
 .body__container {
     display: flex;
     flex-direction: column;
-    background-color: var(--enviro-1);
+    background-color: var(--enviro1);
     margin: 2rem auto;
     max-width: 1000px;
     border-radius: 1rem;
@@ -106,7 +106,7 @@ header {
 /* YOU WIN AND YOU LOSE */
 .header__youWin {
     text-align: center;
-    background-color: var(--enviro-2);
+    background-color: var(--enviro2);
     color: #fff;
     padding: 1rem 2rem;
     border-radius: 0.5rem;
@@ -212,7 +212,7 @@ header {
 }
 
 #submitButton {
-    background-color: var(--enviro-2);
+    background-color: var(--enviro2);
     border: 1px solid var(--dusk-8);
     border-radius: 0.5rem;
     color: var(--dusk-1);
