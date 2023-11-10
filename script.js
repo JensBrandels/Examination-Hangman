@@ -24,7 +24,7 @@ const hangmanLegs = document.getElementById('legs');
 const hangmanScaffold = document.getElementById('scaffold');
 
 //Skapa array med ord
-let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'cat', 'diamond']
+let words = ['happy', 'chair', 'water', 'smile', 'philosopher', 'diamond', "apple", "banana", "couch", "dance", "eleven", "frozen", "grape", "happy", "igloo", "jazz", "kite", "lemon", "mango", "ninja", "ocean", "piano", "quilt", "rabbit", "sunny", "tiger", "umbra", "violin", "waffle", "xylo", "yacht", "zebra", "beach", "cabin", "dream", "flute", "guitar", "hurry", "island", "jungle", "kiwi", "leash", "melon", "night", "octet", "puppy", "quiet", "river", "salsa", "tulip", "unicorn", "violet", "waltz", "xerox", "yummy", "zesty", "bat", "cat", "dog", "egg", "frog", "goat", "hat", "ink", "jug", "kite", "lamp", "moon", "nest", "owl", "pen", "quilt", "rain", "star", "tree", "umbrella", "van", "waffle", "xylophone", "yarn", "zebra", "car", "book", "ball", "house", "duck", "fish", "cake", "train", "shoe", "lion", "tiger", "guitar", "rose", "beach", "snake", "flower", "radio", "sunny", "butter", "bunny", "table", "cherry", "puzzle", "island", "octopus", "chicken", "crystal", "diamond", "elephant", "garbage", "keyboard", "laughter", "monster", "paradise", "triangle", "whisper", "zucchini","watermelon", "celebration", "revolution", "butterflies", "television", "basketball", "chocolate", "strawberry", "encyclopedia", "encyclopedia", "hamburger"]
 
 //disable submitButton innan start av spel
 submitButton.disabled = true;
