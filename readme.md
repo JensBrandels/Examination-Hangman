@@ -11,3 +11,6 @@ Project created by Marcus Widén, Sandra Stoltz and Jens Brandels
 //9. + display image och kör en countdown på de 6 försöken
 //10. ifall countdown hamnar på 0, kalla på diven "Game over" och visa det slumpade ordet. try again knapp
 //11. Ifall man lyckas skriva ut hela ordet, kalla på diven "You Win!" och skapa en play again knapp
+
+
+Vi valde att göra denna uppgiften genom att parkoda. Så vi alla har varit med på i stort sett alla delar och bidragit så mycket vi kan genom hela projektet.  :) 
