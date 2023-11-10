@@ -14,6 +14,7 @@
     --fire: hsl(0, 100%, 67%);
     
 
+
     --font-size-h1: 2rem;
     --font-size-h2: 1.5rem;
     --font-size-h3: 1.125rem;
@@ -50,18 +51,6 @@ h3 {
     font-size: var(--font-size-h3);
 }
 
-h4 {
-    font-size: var(--font-size-h4);
-}
-
-h5 {
-    font-size: var(--font-size-h5);
-}
-
-h6 {
-    font-size: var(--font-size-h6);
-}
-
 p {
     font-size: var(--font-size-p);
 }
@@ -76,7 +65,7 @@ header {
 }
 
 #header__button {
-    background-color: var(--enviro);
+    background-color: var(--enviro-2);
     border: 1px solid var(--dusk-6);
     border-radius: 0.5rem;
     color: var(--dusk-1);
@@ -91,7 +80,7 @@ header {
 
 #header__button:hover {
     background-color: var(--dusk-1);
-    color: var(--enviro);
+    color: var(--enviro-2);
 }
 
 /* IMAGE */
@@ -108,41 +97,68 @@ header {
 .body__container {
     display: flex;
     flex-direction: column;
-    background-color: var(--dusk-9);
-    margin: 0 auto;
+    background-color: var(--enviro-1);
+    margin: 2rem auto;
     max-width: 1000px;
+    border-radius: 1rem;
 }
 
 /* YOU WIN AND YOU LOSE */
 .header__youWin {
-    text-align: center; 
-    background-color: var(--enviro); 
-    color: #fff; 
-    padding: 10px; 
-    border-radius: 0.5rem; 
-    margin: 10px; 
+    text-align: center;
+    background-color: var(--enviro-2);
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    margin: 10px;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     border: 1px solid var(--dusk-8);
-    visibility: hidden;
+    height: 8rem;
+    justify-content: center;
+}
+
+.header__winHidden {
+    display: none;
 }
 
 .header__youWin h2{
     color: #fff;
 }
 
-.header__youLoose {
-    text-align: center; 
-    background-color: var(--fire); 
-    color: #fff;
-    padding: 1rem 2rem; 
-    border-radius: 0.5rem; 
-    margin: 10px; 
-    border: 1px solid var(--dusk-8);
-    visibility: hidden;
+.header__youWin h3 {
+    color: black;
 }
 
-.header__youLoose h2:nth-child(1){
-    padding-bottom: 1rem;
-    font-size: 2rem;
+.header__youLoose {
+    text-align: center;
+    color: #fff;
+    background-color: var(--fire); 
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    margin: 10px;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid var(--dusk-8);
+    height: 10rem;
+    justify-content: center;
+}
+
+.header__looseHidden {
+    display: none;
+}
+
+
+.header__youLoose h2 {
+    color: black;
+}
+
+.header__youLoose h3 {
+    color: black;
 }
 
 /* MAIN CONTAINER */
@@ -159,7 +175,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 4rem;
+    padding: 2rem 4rem 4rem 4rem;
     margin-top: 20px;
     gap: 20px;
     border-radius: 0.5rem;
@@ -170,7 +186,7 @@ header {
     display: flex;
     height: auto;
     justify-content: center;
-    padding: 50px;
+    padding: 0 50px;
 }
 
 /* HANGMAN PARTS */
@@ -196,7 +212,7 @@ header {
 }
 
 #submitButton {
-    background-color: var(--enviro);
+    background-color: var(--enviro-2);
     border: 1px solid var(--dusk-8);
     border-radius: 0.5rem;
     color: var(--dusk-1);
@@ -218,7 +234,7 @@ header {
     border-radius: 0.5rem;
     display: flex;
     height: 5rem;
-    width: 100%;
+    width: 21.5rem;
 }
 
 .main__wrongUsedWords {
